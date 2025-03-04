@@ -68,7 +68,7 @@ const MovieBooking = () => {
                         className="w-[70%] rounded-[10px] overflow-hidden"
                         style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}
                     >
-                        <Cinemas filmId={data?.id} />
+                        <Cinemas filmId={data?.id} currentDate={currentDate} />
                     </div>
 
                     <div className="w-[30%]"></div>

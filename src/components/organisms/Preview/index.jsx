@@ -87,7 +87,7 @@ const Preview = ({ data }) => {
             </div>
 
             <Modal open={isModalOpen} onCancel={handleCancel} width={700} footer="">
-                <div className="fle justify-center items-center mt-[20px]">
+                <div className="fle justify-center items-center mt-[30px]">
                     <iframe
                         className="w-full h-[315px]"
                         src={data?.trailer_url || ''}

@@ -31,12 +31,12 @@ const data = Array.from({ length: 6 }, (_, i) => {
     };
 });
 
-const Cinemas = ({ filmId }) => {
+const Cinemas = ({ filmId, currentDate }) => {
     return (
         <div className="w-[100%] px-[20px] pt-[20px]">
             {data?.length
                 ? data.map((item) => {
-                      return <CinemaItem cinema={item} key={item.id} filmId={filmId} />;
+                      return <CinemaItem cinema={item} key={item.id} filmId={filmId} currentDate={currentDate} />;
                   })
                 : null}
         </div>
@@ -45,11 +45,17 @@ const Cinemas = ({ filmId }) => {
 
 export default Cinemas;
 
-const CinemaItem = ({ cinema, filmId }) => {
+const CinemaItem = ({ cinema, filmId, currentDate }) => {
     const navigate = useNavigate();
-    const handleNavigate = useCallback((time) => {
-        navigate(routes.seat_booking.replace(':id', `${cinema?.id}?filmId=${filmId}&time=${time}`));
-    }, []);
+    const handleNavigate = useCallback(
+        (time) => {
+            navigate(
+                routes.seat_booking.replace(':id', `${cinema?.id}?filmId=${filmId}&date=${currentDate}&time=${time}`),
+            );
+        },
+        [cinema?.id, currentDate, filmId, navigate],
+    );
+
     return (
         <div className="w-[100%] flex justify-start items-start mb-[20px] border-b-[0.1px] border-solid border-[#ccc] py-[20px]">
             <HeartOutlined className="mt-[4px] text-[20px] mr-[20px]" />
