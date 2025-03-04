@@ -1,4 +1,5 @@
-import Header from '../../components/marketing/Header/Header';
+/* eslint-disable react/prop-types */
+import Header from '../../components/organisms/Header/Header';
 
 export default function UserLayout({ children }) {
     return (
