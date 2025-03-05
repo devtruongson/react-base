@@ -1,9 +1,12 @@
-import { HEIGHT_BANNER } from '../../../constants';
-import banner from '../../../../public/images/banner.jpg';
-import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
+import banner from '../../../../public/images/banner.jpg';
+import { HEIGHT_BANNER } from '../../../constants';
+
 const Banner = () => {
     const pathname = useLocation().pathname;
+    const parsed = queryString.parse(location.search);
 
     const label = useMemo(() => {
         if (pathname.includes('/movie_booking')) {
@@ -25,7 +28,7 @@ const Banner = () => {
                     <div className="absolute bottom-[0px] bg-[#707070] flex justify-center items-center gap-[10px] py-[10px] px-[20px] text-[]">
                         <p className="text-white">Home</p>
                         <p className="text-[#FF4444]">{'>'}</p>
-                        <p className="text-[#FF4444]">{label}</p>
+                        <p className="text-[#FF4444]">{label ? label : parsed.label}</p>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
-import Banner from "../organisms/Banner";
+import Banner from '../organisms/Banner';
 // import Footer from "../organisms/Footer";
-import WithHeaderTemplate from "./WithHeaderTemplate";
+import WithHeaderTemplate from './WithHeaderTemplate';
 
 // eslint-disable-next-line react/prop-types
 const MainTemplate = ({ children }) => {

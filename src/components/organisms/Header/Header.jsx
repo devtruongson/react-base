@@ -753,7 +753,7 @@ export default function Header() {
         {
             label: (
                 <span className="text-[#fff]">
-                    <Link to="contact">CONTACT</Link>
+                    <Link to="/contact?label=Contact">CONTACT</Link>
                 </span>
             ),
             key: 'CONTACT',

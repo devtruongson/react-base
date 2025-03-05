@@ -6,13 +6,15 @@ import CinemaEdit from './pages/admin/Cinemas/CinemaEdit';
 import CinemaList from './pages/admin/Cinemas/CinemaList';
 import Dashboard from './pages/admin/Dashboard';
 // import './App.css'
-import './style.css';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import ConfirmationScreen from './components/pages/ConfirmationScreen/ConfirmationScreen';
+import Contact from './components/pages/Contact';
 import Home from './components/pages/Home/Home';
 import MovieBooking from './components/pages/MovieBooking';
-import { routes } from './routes';
 import SeatBooking from './components/pages/SeatBooking';
+import { routes } from './routes';
+import './style.css';
 
 function App() {
     return (
@@ -33,6 +35,8 @@ function App() {
                 <Route path={routes.home} element={<Home />}></Route>
                 <Route path={routes.movie_booking} element={<MovieBooking />} />
                 <Route path={routes.seat_booking} element={<SeatBooking />} />
+                <Route path={routes.contact} element={<Contact />} />
+                <Route path={routes.confirmation_screen} element={<ConfirmationScreen />} />
             </Routes>
         </>
     );
