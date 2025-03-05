@@ -194,14 +194,14 @@ const Chair = ({ name, booked, booking, setBooking, price }) => {
                 <div
                     className="w-[40px] h-[25px] rounded-[5px] border-[1px] border-solid border-[#4d4f5c] flex justify-center items-center"
                     style={{ background: color, borderColor: color, color: isBooking ? '#000' : '' }}
-                    onClick={handleChoose}
+                    onClick={isBooked ? null : handleChoose}
                 >
                     {name?.slice(1)}
                 </div>
                 <div
                     className="w-[30px] h-[10px] rounded-b-[5px] rounded-t-[2px] border-[1px] border-solid border-[#4d4f5c]"
                     style={{ background: color, borderColor: color }}
-                    onClick={handleChoose}
+                    onClick={isBooked ? null : handleChoose}
                 ></div>
             </div>
         </Popover>
