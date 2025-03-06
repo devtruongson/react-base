@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useRef, useEffect, useState } from "react";
-import Card from "../../molecules/Card/Card";
-import Slider from "react-slick";
+import { useRef, useEffect, useState } from 'react';
+import Card from '../../molecules/Card/Card';
+import Slider from 'react-slick';
+import Indicator from '../../atoms/Indicator';
 
 const ListFilm = ({ data, cate }) => {
     const sliderRef = useRef(null);
@@ -13,10 +14,10 @@ const ListFilm = ({ data, cate }) => {
 
         handleResize();
 
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            window.removeEventListener("resize", handleResize);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -29,7 +30,7 @@ const ListFilm = ({ data, cate }) => {
     };
 
     useEffect(() => {
-        console.log("Slider ref:", sliderRef.current);
+        console.log('Slider ref:', sliderRef.current);
     }, []);
 
     const handlePrev = () => {
@@ -48,25 +49,14 @@ const ListFilm = ({ data, cate }) => {
         <div className="relative">
             <div className="flex justify-between items-center mb-4">
                 <div className="text-start">
-                    <p className="uppercase text-[20px] font-[500] mb-[10px]">
-                        {cate}
-                    </p>
-                    <div className="flex justify-start items-start">
-                        <div className="h-[4px] w-[30px] bg-red-500"></div>
-                        <div className="h-[2px] w-[60px] bg-[#707070]"></div>
-                    </div>
+                    <p className="uppercase text-[20px] font-[500] mb-[10px]">{cate}</p>
+                    <Indicator />
                 </div>
                 <div className="space-x-2">
-                    <button
-                        onClick={handlePrev}
-                        className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-400"
-                    >
+                    <button onClick={handlePrev} className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-400">
                         ←
                     </button>
-                    <button
-                        onClick={handleNext}
-                        className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-400"
-                    >
+                    <button onClick={handleNext} className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-400">
                         →
                     </button>
                 </div>

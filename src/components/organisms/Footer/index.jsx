@@ -138,7 +138,11 @@ const ItemCommon = ({ data, isUl = true }) => {
                 <ul>
                     {data?.values.map((item, index) => {
                         return (
-                            <li key={index} className="mb-[10px] cursor-pointer hover:text-[#f44343]">
+                            <li
+                                key={index}
+                                className="mb-[10px] cursor-pointer hover:text-[#f44343] flex items-center justify-start gap-[4px]"
+                            >
+                                <i className="bi bi-circle-fill text-[10px] text-[#f44343]"></i>
                                 {item}
                             </li>
                         );

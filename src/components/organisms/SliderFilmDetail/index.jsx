@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes';
 import { useCallback } from 'react';
 import { CalendarOutlined, ClockCircleOutlined, HeartOutlined } from '@ant-design/icons';
+import slider from '../../../../public/images/content/movie_category/slider_img1.jpg';
 
 /* eslint-disable react/prop-types */
 const SliderFilmDetail = ({ data, image }) => {
@@ -12,6 +13,7 @@ const SliderFilmDetail = ({ data, image }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [data?.id],
     );
+
     return (
         <div className="flex sm:flex-row flex-col justify-center sm:p-[0] p-[10px]">
             <div className="sm:w-[35%] w-[100%] text-start pl-[20px]">
@@ -51,7 +53,7 @@ const SliderFilmDetail = ({ data, image }) => {
                 </button>
             </div>
             <div className="sm:w-[65%] w-[100%] sm:mt-0 mt-[30px]">
-                <img src={image} alt="image" className="w-full object-cover" />
+                <img src={image ? image : slider} alt="image" className="w-full object-cover" />
             </div>
         </div>
     );

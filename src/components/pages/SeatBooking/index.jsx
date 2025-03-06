@@ -45,7 +45,7 @@ const SeatBooking = () => {
         <div className="w-[100%] text-[#ffffff61]">
             <div className="bg-[#2B2D3D] w-[100%] sm:h-[120px] h-[300px] ">
                 <ContainerWapper>
-                    <div className="flex sm:flex-row flex-col items-center justify-between">
+                    <div className="flex sm:flex-row gap-[20px] flex-col items-center justify-between">
                         <div className="">
                             <button
                                 className="bg-[#3f414f] hover:bg-[#ff4444] hover:text-[#fff] px-[28px] py-[4px] rounded-[8px]"
@@ -77,9 +77,9 @@ const SeatBooking = () => {
                 </ContainerWapper>
             </div>
 
-            <div className="bg-[#333545] pt-[40px]">
+            <div className="bg-[#333545] pt-[40px] overflow-auto">
                 <ContainerWapper>
-                    <div className="">
+                    <div className="sm:w-[100%] w-[1300px]">
                         <p className="text-center text-[16px] uppercase mb-[40px]">Ariesplex SL Cinemas</p>
                         <img src={screen} alt="screen" className="mb-[40px]" />
                         <div className="w-[100%] flex justify-between items-center">
@@ -88,7 +88,7 @@ const SeatBooking = () => {
                             <div className="h-[2px] bg-[#ffffff61] w-[42%]"></div>
                         </div>
 
-                        <div className="w-[100%] py-[30px]">
+                        <div className="w-[100%] py-[30px] sm:px-[0px] px-[10px]">
                             <ListChair
                                 target={'d'}
                                 booked={data?.booked}
@@ -104,7 +104,7 @@ const SeatBooking = () => {
                             <div className="h-[2px] bg-[#ffffff61] w-[35%]"></div>
                         </div>
 
-                        <div className="flex flex-col items-center gap-[40px] mb-[60px]">
+                        <div className="flex flex-col items-center gap-[40px] mb-[60px] sm:px-[0px] px-[10px]">
                             {['c', 'b', 'a'].map((item, index) => {
                                 return (
                                     <div className="w-[100%]" key={index}>

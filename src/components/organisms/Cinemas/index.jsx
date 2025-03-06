@@ -4,6 +4,9 @@ import { HeartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes';
 import { useCallback } from 'react';
+import bill from '../../../../public/images/content/bill.png';
+import fastFood from '../../../../public/images/content/fast-food.png';
+import ticket from '../../../../public/images/content/ticket.png';
 
 /* eslint-disable no-unused-vars */
 const data = Array.from({ length: 6 }, (_, i) => {
@@ -24,10 +27,7 @@ const data = Array.from({ length: 6 }, (_, i) => {
                 period: 'AM',
             },
         ],
-        icons: [
-            'http://127.0.0.1:5500/client/html/filmgo/html/images/content/fast-food.png',
-            'http://127.0.0.1:5500/client/html/filmgo/html/images/content/bill.png',
-        ],
+        icons: ['fast-food', 'ticket'],
     };
 });
 
@@ -56,6 +56,13 @@ const CinemaItem = ({ cinema, filmId, currentDate }) => {
         [cinema?.id, currentDate, filmId, navigate],
     );
 
+    const handleGetIcon = (type) => {
+        if (type === 'bill') bill;
+        if (type === 'ticket') return ticket;
+        if (type === 'fast-food') return fastFood;
+        return '';
+    };
+
     return (
         <div className="w-[100%] flex justify-start items-start mb-[20px] border-b-[0.1px] border-solid border-[#ccc] py-[20px]">
             <HeartOutlined className="mt-[4px] text-[20px] mr-[20px]" />
@@ -64,7 +71,14 @@ const CinemaItem = ({ cinema, filmId, currentDate }) => {
                 <div className="flex justify-start items-center gap-[10px]">
                     {cinema?.icons?.length
                         ? cinema?.icons?.map((item, index) => {
-                              return <img alt="icons" src={item} key={index} className="w-[32px] h-[32px]" />;
+                              return (
+                                  <img
+                                      alt="icons"
+                                      src={handleGetIcon(item)}
+                                      key={index}
+                                      className="w-[32px] h-[32px]"
+                                  />
+                              );
                           })
                         : null}
                 </div>
@@ -75,7 +89,7 @@ const CinemaItem = ({ cinema, filmId, currentDate }) => {
                           return (
                               <div
                                   key={index}
-                                  className=" px-[8px] py-[4px] border-solid border-[1px] border-[#ccc] rounded-[4px] cursor-pointer hover:bg-[#ff4444] hover:text-white"
+                                  className=" px-[8px] py-[4px] text-[14px] border-solid border-[1px] border-[#ccc] rounded-[4px] cursor-pointer hover:bg-[#ff4444] hover:text-white"
                                   onClick={() => handleNavigate(item?.clock + item?.period)}
                               >
                                   {item?.clock} {item?.period}

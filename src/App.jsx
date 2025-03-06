@@ -10,7 +10,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import ConfirmationScreen from './components/pages/ConfirmationScreen/ConfirmationScreen';
 import Contact from './components/pages/Contact';
-import Home from './components/pages/Home/Home';
+import FilmDetail from './components/pages/FilmDetail/FilmDetail';
 import MovieBooking from './components/pages/MovieBooking';
 import SeatBooking from './components/pages/SeatBooking';
 import { routes } from './routes';
@@ -32,7 +32,7 @@ function App() {
             {/* router user */}
             <Routes>
                 <Route path="/" element={<UserLayout />}></Route>
-                <Route path={routes.home} element={<Home />}></Route>
+                <Route path={routes.film_detail} element={<FilmDetail />}></Route>
                 <Route path={routes.movie_booking} element={<MovieBooking />} />
                 <Route path={routes.seat_booking} element={<SeatBooking />} />
                 <Route path={routes.contact} element={<Contact />} />
