@@ -8,9 +8,11 @@ import p4 from '../../../../public/images/content/p4.jpg';
 import p5 from '../../../../public/images/content/p5.jpg';
 import p6 from '../../../../public/images/content/p6.jpg';
 import { FacebookOutlined, LinkedinOutlined, TwitterSquareFilled, YoutubeOutlined } from '@ant-design/icons';
-import { Fragment } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import f1 from '../../../../public/images/content/f1.jpg';
 import f2 from '../../../../public/images/content/f2.jpg';
+import Indicator from '../../atoms/Indicator';
+import Slider from 'react-slick';
 
 const cates = [
     {
@@ -61,6 +63,28 @@ const socials = [
 ];
 
 const Footer = () => {
+    const sliderRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: isMobile ? 1 : 3,
+        slidesToScroll: 1,
+    };
+
+    // const handlePrev = () => {
+    //     if (sliderRef.current) {
+    //         sliderRef.current.slickPrev();
+    //     }
+    // };
+
+    // const handleNext = () => {
+    //     if (sliderRef.current) {
+    //         sliderRef.current.slickNext();
+    //     }
+    // };
     return (
         <div className="w-[100%] shadow">
             <div className="pt-[90px] pb-[80px] w-[100%] bg-white">
@@ -73,10 +97,12 @@ const Footer = () => {
                             <div className="w-[40%] h-[2px] bg-[#ccc]"></div>
                         </div>
 
-                        <div className="flex justify-center items-center gap-[20px]">
+                        <div className="flex justify-center items-center gap-[20px] w-[100%]">
                             {[p1, p2, p3, p4, p5, p6].map((item, index) => {
-                                return <img alt="" src={item} key={index} className="w-[170px]" />;
+                                return <img alt="" src={item} key={index} className="w-[170px] h-[170px]" />;
                             })}
+                            {/* <Slider {...settings}>
+                            </Slider> */}
                         </div>
                     </div>
                 </ContainerWapper>
@@ -84,15 +110,17 @@ const Footer = () => {
 
             <div className="bg-[#f44343] h-[160px]">
                 <ContainerWapper>
-                    <div className="flex justify-between items-center">
+                    <div className="flex sm:flex-row flex-col justify-between items-center">
                         <p className="uppercase text-[30px] font-[500] text-white">get update sign up now !</p>
-                        <div className="border-solid border-[1px] border-[#f3c600]">
+                        <div className="border-solid border-[1px] border-[#f3c600] sm:w-auto w-[90%]">
                             <input
                                 type="text"
-                                className="bg-[#f44343] text-[#ffffff61] py-[8px] px-[16px] w-[400px] outline-none"
+                                className="bg-[#f44343] text-[#ffffff61] py-[8px] px-[16px] sm:w-[400px] w-[70%] outline-none"
                                 placeholder="Enter Your Email"
                             />
-                            <button className="bg-white text-[16px] text-[#f44343] py-[8px] px-[20px]">Submit</button>
+                            <button className="bg-white text-[16px] text-[#f44343] py-[8px] px-[20px] sm:w-auto w-[30%]">
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </ContainerWapper>
@@ -101,13 +129,13 @@ const Footer = () => {
             <div className="bg-[#000] py-[60px]">
                 <ContainerWapper>
                     <div className="w-[100%] text-[#ffffff61]">
-                        <div className="w-[100%] flex justify-between items-start mb-[40px]">
+                        <div className="w-[100%] flex sm:flex-row flex-col justify-between items-start mb-[40px] sm:px-0 px-[20px]">
                             {cates.map((item, index) => {
                                 return <ItemCommon key={index} data={item} isUl={index !== cates.length - 1} />;
                             })}
                         </div>
-                        <div className="w-[100%] flex justify-between items-center">
-                            <p className="text-[16px]">
+                        <div className="w-[100%] flex sm:flex-row flex-col justify-between items-center sm:px-0 px-[20px] sm:gap-0 gap-[20px]">
+                            <p className="text-[16px] text-center">
                                 Copyright 2022-23 <span className="text-[#f44343] text-[14px]">Movie Pro</span>. All
                                 rights reserved - Design by <span className="text-[#f44343]">FStack</span>
                             </p>
@@ -128,14 +156,11 @@ export default Footer;
 
 const ItemCommon = ({ data, isUl = true }) => {
     return (
-        <div className="">
+        <div className="sm:mb-0 mb-[28px]">
             <p className="text-white text-[16px] font-[400] uppercase mb-[15px]">{data?.label}</p>
-            <div className="flex justify-start items-start mb-[15px]">
-                <div className="w-[30px] h-[4px] bg-[#f44343]"></div>
-                <div className="w-[60px] h-[2px] bg-white"></div>
-            </div>
+            <Indicator />
             {isUl ? (
-                <ul>
+                <ul className="mt-[20px]">
                     {data?.values.map((item, index) => {
                         return (
                             <li

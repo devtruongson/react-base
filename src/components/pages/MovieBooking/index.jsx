@@ -98,16 +98,16 @@ const MovieBooking = () => {
             </div>
 
             <ContainerWapper>
-                <div className="flex justify-between items-start mt-[40px]">
+                <div className="flex sm:flex-row flex-col justify-between sm:items-start items-center mt-[40px] sm:gap-0 gap-[20px]">
                     <div
-                        className="w-[70%] rounded-[10px] overflow-hidden bg-white"
+                        className="sm:w-[70%] w-[95%] rounded-[10px] overflow-hidden bg-white"
                         style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}
                     >
                         <Cinemas filmId={data?.id} currentDate={currentDate} />
                     </div>
 
                     <div
-                        className="w-[28%] rounded-[10px] p-[24px] bg-white"
+                        className="sm:w-[28%] w-[95%] rounded-[10px] p-[24px] bg-white"
                         style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}
                     >
                         <div className="flex justify-center items-center w-[100%] mb-[40px]">

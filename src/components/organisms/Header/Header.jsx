@@ -1,5 +1,5 @@
 import { Carousel, Menu, Modal, Select } from 'antd';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
@@ -8,6 +8,7 @@ export default function Header() {
     const [current, setCurrent] = useState('home-menu');
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [idPlay, setIdPlay] = useState('');
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
         setCate([
@@ -767,38 +768,46 @@ export default function Header() {
                     <a href="/">
                         <img src="/images/header/logo.png" alt="" />
                     </a>
-                    <div className="flex-1">
-                        <Menu
-                            className="bg-transparent text-[#fff]"
-                            onClick={handleClickMenuHeader}
-                            selectedKeys={[current]}
-                            mode="horizontal"
-                            items={headerNavidata}
-                        />
-                    </div>
+                    {isMobile ? null : (
+                        <div className="flex-1">
+                            <Menu
+                                className="bg-transparent text-[#fff]"
+                                onClick={handleClickMenuHeader}
+                                selectedKeys={[current]}
+                                mode="horizontal"
+                                items={headerNavidata}
+                            />
+                        </div>
+                    )}
                 </div>
                 <div className="flex items-center gap-3">
-                    <div style={{}} className="h-[50px] rounded-[10px] overflow-hidden flex items-center">
-                        <Select
-                            className="h-[100%] select-ant-none-radius"
-                            style={{ width: 140, borderRadius: 0 }}
-                            options={cate}
-                            value={cateSelected}
-                            onChange={handleChangeCate}
-                        />
-                        <input
-                            className="h-[100%] border-none px-2 w-[250px]"
-                            style={{
-                                outline: 'none',
-                            }}
-                            type="text"
-                            placeholder="Search Movie , Video , Music"
-                        />
-                        <button className="bg-[#000] text-[#fff] h-full w-[50px]">
-                            <i className="bi bi-search-heart"></i>
-                        </button>
-                    </div>
-                    <button className="bg-[#000] text-[#fff] h-[50px] w-[180px] rounded-[10px] ">sign up</button>
+                    {isMobile ? null : (
+                        <Fragment>
+                            <div style={{}} className="h-[50px] rounded-[10px] overflow-hidden flex items-center">
+                                <Select
+                                    className="h-[100%] select-ant-none-radius"
+                                    style={{ width: 140, borderRadius: 0 }}
+                                    options={cate}
+                                    value={cateSelected}
+                                    onChange={handleChangeCate}
+                                />
+                                <input
+                                    className="h-[100%] border-none px-2 w-[250px]"
+                                    style={{
+                                        outline: 'none',
+                                    }}
+                                    type="text"
+                                    placeholder="Search Movie , Video , Music"
+                                />
+                                <button className="bg-[#000] text-[#fff] h-full w-[50px]">
+                                    <i className="bi bi-search-heart"></i>
+                                </button>
+                            </div>
+                            <button className="bg-[#000] text-[#fff] h-[50px] w-[180px] rounded-[10px] ">
+                                sign up
+                            </button>
+                        </Fragment>
+                    )}
                     <button className="w-[50px] h-[50px] bg-[rgba(0,0,0,0.2)] rounded-[10px] flex justify-center items-center">
                         <img src="/images/header/bars.png" className="object-contain" alt="" />
                     </button>

@@ -29,10 +29,6 @@ const ListFilm = ({ data, cate }) => {
         slidesToScroll: 1,
     };
 
-    useEffect(() => {
-        console.log('Slider ref:', sliderRef.current);
-    }, []);
-
     const handlePrev = () => {
         if (sliderRef.current) {
             sliderRef.current.slickPrev();
@@ -46,7 +42,7 @@ const ListFilm = ({ data, cate }) => {
     };
 
     return (
-        <div className="relative">
+        <div className="relative  sm:px-0 px-[20px]">
             <div className="flex justify-between items-center mb-4">
                 <div className="text-start">
                     <p className="uppercase text-[20px] font-[500] mb-[10px]">{cate}</p>

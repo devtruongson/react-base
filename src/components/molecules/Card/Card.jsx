@@ -13,7 +13,7 @@ const Card = ({ data }) => {
         [data?.id, navigate],
     );
     return (
-        <div className="sm:w-[300px] w-[100%] rounded-[10px] overflow-hidden shadow-lg">
+        <div className="w-[300px] rounded-[10px] overflow-hidden shadow-lg">
             <div className="relative group w-[300px] h-[400px] overflow-hidden rounded-lg">
                 <img alt="thumbnail" src={data?.thumbnail || thumbnailDefault} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-500"></div>
