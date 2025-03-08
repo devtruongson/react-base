@@ -97,13 +97,13 @@ const Footer = () => {
                             <div className="w-[40%] h-[2px] bg-[#ccc]"></div>
                         </div>
 
-                        <div className="flex justify-center items-center gap-[20px] w-[100%]">
+                        {/* <div className="flex justify-center items-center gap-[20px] w-[100%]">
                             {[p1, p2, p3, p4, p5, p6].map((item, index) => {
                                 return <img alt="" src={item} key={index} className="w-[170px] h-[170px]" />;
                             })}
-                            {/* <Slider {...settings}>
-                            </Slider> */}
-                        </div>
+                            <Slider {...settings}>
+                            </Slider>
+                        </div> */}
                     </div>
                 </ContainerWapper>
             </div>

@@ -8,3 +8,6 @@ export const chairs = {
     c: Array.from({ length: 22 }, (_, i) => `c${i + 1}`),
     d: Array.from({ length: 22 }, (_, i) => `d${i + 1}`),
 };
+export const boxShadow = { boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' };
+
+export const trailerDefault = 'https://www.youtube.com/embed/XVtxye3c4AU';

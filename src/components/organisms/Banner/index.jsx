@@ -12,6 +12,13 @@ const Banner = () => {
         if (pathname.includes('/movie_booking')) {
             return 'Movie Booking';
         }
+        if (pathname.includes('/blog_category')) {
+            return 'Blog Category';
+        }
+        if (pathname.includes('/blog_single')) {
+            return 'Blog Single Page';
+        }
+        return '';
     }, [pathname]);
 
     return (
@@ -23,7 +30,7 @@ const Banner = () => {
             className=" relative "
         >
             <div className="absolute inset-0 bg-black bg-opacity-[70%] ">
-                <div className="h-[100%] ư-[100%] relative flex justify-center items-center">
+                <div className="h-[100%] w-[100%] relative flex justify-center items-center">
                     <p className="text-white text-[36px] font-[500] uppercase">{label}</p>
                     <div className="absolute bottom-[0px] bg-[#707070] flex justify-center items-center gap-[10px] py-[10px] px-[20px] text-[]">
                         <p className="text-white">Home</p>

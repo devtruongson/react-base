@@ -15,6 +15,8 @@ import MovieBooking from './components/pages/MovieBooking';
 import SeatBooking from './components/pages/SeatBooking';
 import { routes } from './routes';
 import './style.css';
+import BlogCategory from './components/pages/BlogCategory';
+import BlogSingle from './components/pages/BlogSingle';
 
 function App() {
     return (
@@ -37,6 +39,8 @@ function App() {
                 <Route path={routes.seat_booking} element={<SeatBooking />} />
                 <Route path={routes.contact} element={<Contact />} />
                 <Route path={routes.confirmation_screen} element={<ConfirmationScreen />} />
+                <Route path={routes.blog_category} element={<BlogCategory />} />
+                <Route path={routes.blog_single} element={<BlogSingle />} />
             </Routes>
         </>
     );
