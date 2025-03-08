@@ -8,11 +8,12 @@ import p4 from '../../../../public/images/content/p4.jpg';
 import p5 from '../../../../public/images/content/p5.jpg';
 import p6 from '../../../../public/images/content/p6.jpg';
 import { FacebookOutlined, LinkedinOutlined, TwitterSquareFilled, YoutubeOutlined } from '@ant-design/icons';
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useMemo, useRef } from 'react';
 import f1 from '../../../../public/images/content/f1.jpg';
 import f2 from '../../../../public/images/content/f2.jpg';
 import Indicator from '../../atoms/Indicator';
 import Slider from 'react-slick';
+import './styles.css';
 
 const cates = [
     {
@@ -64,27 +65,27 @@ const socials = [
 
 const Footer = () => {
     const sliderRef = useRef(null);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const isMobile = useMemo(() => window.innerWidth <= 768, []);
 
     const settings = {
         dots: false,
         infinite: true,
-        speed: 500,
-        slidesToShow: isMobile ? 1 : 3,
+        speed: 800,
+        slidesToShow: isMobile ? 1 : 6,
         slidesToScroll: 1,
     };
 
-    // const handlePrev = () => {
-    //     if (sliderRef.current) {
-    //         sliderRef.current.slickPrev();
-    //     }
-    // };
+    const handlePrev = () => {
+        if (sliderRef.current) {
+            sliderRef.current.slickPrev();
+        }
+    };
 
-    // const handleNext = () => {
-    //     if (sliderRef.current) {
-    //         sliderRef.current.slickNext();
-    //     }
-    // };
+    const handleNext = () => {
+        if (sliderRef.current) {
+            sliderRef.current.slickNext();
+        }
+    };
     return (
         <div className="w-[100%] shadow">
             <div className="pt-[90px] pb-[80px] w-[100%] bg-white">
@@ -97,13 +98,27 @@ const Footer = () => {
                             <div className="w-[40%] h-[2px] bg-[#ccc]"></div>
                         </div>
 
-                        {/* <div className="flex justify-center items-center gap-[20px] w-[100%]">
-                            {[p1, p2, p3, p4, p5, p6].map((item, index) => {
-                                return <img alt="" src={item} key={index} className="w-[170px] h-[170px]" />;
-                            })}
-                            <Slider {...settings}>
-                            </Slider>
-                        </div> */}
+                        <div className="w-full flex justify-between items-center sm:px-0 px-[10px]">
+                            <button
+                                className="bg-[#ff4444] text-white w-[50px] h-[50px] rounded-[100px] text-[28px]"
+                                onClick={handlePrev}
+                            >
+                                <i className="bi bi-caret-left"></i>
+                            </button>
+                            <div className="sm:w-[80%] w-[60%]">
+                                <Slider {...settings} ref={sliderRef}>
+                                    {[p1, p2, p3, p4, p5, p6].map((item, index) => (
+                                        <img alt="" src={item} key={index} className="" />
+                                    ))}
+                                </Slider>
+                            </div>
+                            <button
+                                className="bg-[#ff4444] text-white w-[50px] h-[50px] rounded-[100px] text-[28px]"
+                                onClick={handleNext}
+                            >
+                                <i className="bi bi-caret-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </ContainerWapper>
             </div>
