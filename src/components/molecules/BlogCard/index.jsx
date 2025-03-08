@@ -8,51 +8,67 @@ import Slider from 'react-slick';
 import './styles.css';
 import ReadMore from '../../atoms/ReadMore';
 import { formatDateView } from '../../../helpers/formatDateView';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../../routes';
 
-const BlogCard = ({ data }) => {
+const BlogCard = ({ data, children, isAll = true }) => {
+    const navigate = useNavigate();
     return (
         <div className="w-[100%] rounded-[10px] overflow-hidden" style={boxShadow}>
             <ThumbnailCommon thumbnail={data?.thumbnail} trailer_url={data?.trailer_url} />
-            <div className="p-[35px] flex flex-col items-start justify-start gap-[20px]">
-                <div className="flex justify-start items-center gap-[10px] text-[16px] text-[#ff4444]">
-                    <p>{formatDateView(data?.date)}</p>
-                    <p>|</p>
-                    <p>by {data?.author}</p>
-                </div>
-                <p className="text-[18px] text-[#000] font-[600] uppercase">{data?.title}</p>
-                <p className="text-[16px] text-[#707070]">{data?.description}</p>
-                <ReadMore />
-            </div>
-            <div className="border-t-[1px] border-solid border-[#ccc] px-[35px] flex sm:flex-row flex-col justify-between items-center">
-                <div className="grid grid-cols-2 sm:flex justify-start items-center gap-[20px] py-[15px] sm:w-auto w-[100%]">
-                    {[
-                        { icon: <i className="bi bi-hand-thumbs-up-fill" />, value: data?.likes || 0, label: 'Likes' },
-                        { icon: <i className="bi bi-chat-dots-fill" />, value: data?.comments || 0, label: 'Comments' },
-                        {
-                            icon: <i className="bi bi-ticket-perforated-fill" />,
-                            value: data?.presenter || 0,
-                            label: 'Presenter Movie',
-                            full: true,
-                        },
-                    ].map((item, index) => (
-                        <div
-                            className={`flex justify-start items-center gap-[5px] text-[16px] text-[#797979] ${
-                                item.full ? 'col-span-2' : ''
-                            }`}
-                            key={index}
-                        >
-                            <p className="text-[#f44343]">{item.icon}</p>
-                            <p>{item.value}</p>
-                            <p>{item.label}</p>
-                        </div>
-                    ))}
+            <div className="" onClick={() => navigate(routes.blog_single.replace(':id', data.id))}>
+                <div className="p-[35px] flex flex-col items-start justify-start gap-[20px]">
+                    <div className="flex justify-start items-center gap-[10px] text-[16px] text-[#ff4444]">
+                        <p>{formatDateView(data?.date)}</p>
+                        <p>|</p>
+                        <p>by {data?.author}</p>
+                    </div>
+                    <p className="text-[18px] text-[#000] font-[600] uppercase">{data?.title}</p>
+                    <p className="text-[16px] text-[#707070]">{data?.description}</p>
+                    {isAll ? <ReadMore /> : null}
                 </div>
 
-                <div className="flex sm:justify-end justify-start items-center gap-[10px] text-[#797979] text-[16px] sm:w-auto w-[100%] sm:pb-0 pb-[20px]">
-                    <i className="bi bi-facebook" />
-                    <i className="bi bi-youtube" />
-                    <i className="bi bi-linkedin" />
-                    <i className="bi bi-twitter" />
+                <div className="">{children}</div>
+
+                <div className="border-t-[1px] border-solid border-[#ccc] px-[35px] flex sm:flex-row flex-col justify-between items-center">
+                    <div className="grid grid-cols-2 sm:flex justify-start items-center gap-[20px] py-[15px] sm:w-auto w-[100%]">
+                        {[
+                            {
+                                icon: <i className="bi bi-hand-thumbs-up-fill" />,
+                                value: data?.likes || 0,
+                                label: 'Likes',
+                            },
+                            {
+                                icon: <i className="bi bi-chat-dots-fill" />,
+                                value: data?.comments || 0,
+                                label: 'Comments',
+                            },
+                            {
+                                icon: <i className="bi bi-ticket-perforated-fill" />,
+                                value: data?.presenter || 0,
+                                label: 'Presenter Movie',
+                                full: true,
+                            },
+                        ].map((item, index) => (
+                            <div
+                                className={`flex justify-start items-center gap-[5px] text-[16px] text-[#797979] ${
+                                    item.full ? 'col-span-2' : ''
+                                }`}
+                                key={index}
+                            >
+                                <p className="text-[#f44343]">{item.icon}</p>
+                                <p>{item.value}</p>
+                                <p>{item.label}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="flex sm:justify-end justify-start items-center gap-[10px] text-[#797979] text-[16px] sm:w-auto w-[100%] sm:pb-0 pb-[20px]">
+                        <i className="bi bi-facebook" />
+                        <i className="bi bi-youtube" />
+                        <i className="bi bi-linkedin" />
+                        <i className="bi bi-twitter" />
+                    </div>
                 </div>
             </div>
         </div>

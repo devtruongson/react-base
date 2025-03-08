@@ -5,5 +5,5 @@ export const routes = {
     contact: '/contact',
     confirmation_screen: '/confirmation-screen',
     blog_category: '/blog_category',
-    blog_single: '/blog_single',
+    blog_single: '/blog_single/:id',
 };
