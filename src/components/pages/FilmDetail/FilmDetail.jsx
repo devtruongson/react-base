@@ -136,7 +136,7 @@ const Home = () => {
                 </div>
 
                 <div className="flex lg:flex-row flex-col justify-between lg:items-start items-center">
-                    <div className="lg:w-[75%] w-[95%]">
+                    <div className="lg:w-[78%] w-[95%]">
                         {[
                             { cate: 'Movies', data: list },
                             { cate: 'Movies', data: list },
@@ -150,7 +150,7 @@ const Home = () => {
                         })}
                     </div>
                     <div
-                        className="lg:w-[22%] w-[95%] sm:block hidden p-[10px] rounded-[8px]"
+                        className="lg:w-[20%] w-[95%] sm:block hidden p-[10px] rounded-[8px]"
                         style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}
                     >
                         <p className="uppercase text-[16px] font-[500] mb-[16px]">Trending Search</p>

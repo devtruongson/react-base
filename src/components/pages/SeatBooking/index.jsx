@@ -79,7 +79,7 @@ const SeatBooking = () => {
 
             <div className="bg-[#333545] pt-[40px] overflow-auto">
                 <ContainerWapper>
-                    <div className="sm:w-[100%] w-[1300px]">
+                    <div className="lg:w-[100%] w-[1300px]">
                         <p className="text-center text-[16px] uppercase mb-[40px]">Ariesplex SL Cinemas</p>
                         <img src={screen} alt="screen" className="mb-[40px]" />
                         <div className="w-[100%] flex justify-between items-center">
