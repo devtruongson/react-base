@@ -1,32 +1,41 @@
 /* eslint-disable react/prop-types */
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import Card from '../../molecules/Card/Card';
 import Slider from 'react-slick';
 import Indicator from '../../atoms/Indicator';
 
 const ListFilm = ({ data, cate }) => {
     const sliderRef = useRef(null);
-    const [isMobile, setIsMobile] = useState(false);
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        handleResize();
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     const settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: isMobile ? 1 : 3,
+        slidesToShow: 3,
         slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
     };
 
     const handlePrev = () => {

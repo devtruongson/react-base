@@ -123,7 +123,7 @@ const Footer = () => {
                             <div className="w-[40%] h-[2px] bg-[#ccc]"></div>
                         </div>
 
-                        <div className="w-full flex justify-between items-center sm:px-0 px-[10px]">
+                        <div className="w-[100%] flex justify-between items-center sm:px-0 px-[10px]">
                             <button
                                 className="bg-[#ff4444] text-white w-[50px] h-[50px] rounded-[100px] text-[28px]"
                                 onClick={handlePrev}
@@ -144,6 +144,7 @@ const Footer = () => {
                                 <i className="bi bi-caret-right"></i>
                             </button>
                         </div>
+                        <div className="w-[100%]"></div>
                     </div>
                 </ContainerWapper>
             </div>

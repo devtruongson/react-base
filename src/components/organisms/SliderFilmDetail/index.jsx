@@ -46,7 +46,7 @@ const SliderFilmDetail = ({ data, image }) => {
                 </div>
 
                 <button
-                    className="relative overflow-hidden uppercase text-white px-5 py-2 rounded-[8px] mt-5 bg-[#ff4444] transition-all duration-500 border border-[#ff4444] before:content-[''] before:absolute before:inset-0 before:bg-white before:scale-0 before:rounded-full before:transition-transform before:duration-500 before:z-0 hover:before:scale-150 hover:text-[#ff4444]"
+                    className=" lg:mb-0 mb-[20px] relative overflow-hidden uppercase text-white px-5 py-2 rounded-[8px] mt-5 bg-[#ff4444] transition-all duration-500 border border-[#ff4444] before:content-[''] before:absolute before:inset-0 before:bg-white before:scale-0 before:rounded-full before:transition-transform before:duration-500 before:z-0 hover:before:scale-150 hover:text-[#ff4444]"
                     onClick={handleNavigateBooking}
                 >
                     <span className="relative z-10">Book now</span>
