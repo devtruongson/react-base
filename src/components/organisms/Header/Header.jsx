@@ -1,6 +1,7 @@
 import { Carousel, Menu, Modal, Select } from 'antd';
 import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HEADER_HEIGHT } from '../../../constants';
 
 export default function Header() {
     const [cate, setCate] = useState();
@@ -8,7 +9,7 @@ export default function Header() {
     const [current, setCurrent] = useState('home-menu');
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [idPlay, setIdPlay] = useState('');
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    // const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
         setCate([
@@ -74,7 +75,9 @@ export default function Header() {
             children: [
                 {
                     type: 'group',
-                    label: <span className="text-[#000] font-bold text-[16px]">Popular Hindi Movies</span>,
+                    label: (
+                        <span className="lg:text-[#000] text-white lg:font-bold text-[16px]">Popular Hindi Movies</span>
+                    ),
                     children: [
                         {
                             label: 'Bajiro Mastani',
@@ -176,7 +179,11 @@ export default function Header() {
                 },
                 {
                     type: 'group',
-                    label: <span className="text-[16px] font-bold text-[#000]">Popular Kannada Movies</span>,
+                    label: (
+                        <span className="text-[16px] lg:text-[#000] text-white lg:font-bold">
+                            Popular Kannada Movies
+                        </span>
+                    ),
                     children: [
                         {
                             label: 'Bajiro Mastani',
@@ -278,7 +285,11 @@ export default function Header() {
                 },
                 {
                     type: 'group',
-                    label: <span className="text-[16px] font-bold text-[#000]">Popular Bengali Movies</span>,
+                    label: (
+                        <span className="text-[16px] lg:text-[#000] text-white lg:font-bold">
+                            Popular Bengali Movies
+                        </span>
+                    ),
                     children: [
                         {
                             label: 'Bajiro Mastani',
@@ -380,7 +391,11 @@ export default function Header() {
                 },
                 {
                     type: 'group',
-                    label: <span className="text-[16px] font-bold text-[#000]">Popular Kannada Movies</span>,
+                    label: (
+                        <span className="text-[16px] lg:text-[#000] text-white lg:font-bold">
+                            Popular Kannada Movies
+                        </span>
+                    ),
                     children: [
                         {
                             label: 'Bajiro Mastani',
@@ -482,7 +497,7 @@ export default function Header() {
                 },
                 {
                     type: 'group',
-                    label: <span className="text-[16px] font-bold text-[#000]"></span>,
+                    label: <span className="text-[16px] lg:text-[#000] text-white lg:font-bold"></span>,
                     popupClassName: 'course_custome',
                     children: [
                         {
@@ -699,10 +714,14 @@ export default function Header() {
             children: [
                 {
                     type: 'group',
-                    label: <span className="text-[#000] font-bold text-[16px]">Blog</span>,
+                    label: <span className="lg:text-[#000] text-white lg:font-bold text-[16px]">Blog</span>,
                     children: [
                         {
-                            label: <Link to={'/blog-category'}>Blog-Category</Link>,
+                            label: (
+                                <Link to={'/blog-category'} className="lg:text-black text-white">
+                                    Blog-Category
+                                </Link>
+                            ),
                             key: 'Blog-Category',
                         },
                         {
@@ -713,7 +732,7 @@ export default function Header() {
                 },
                 {
                     type: 'group',
-                    label: <span className="text-[#000] font-bold text-[16px]">Movie</span>,
+                    label: <span className="lg:text-[#000] text-white lg:font-bold text-[16px]">Movie</span>,
                     children: [
                         {
                             label: <Link to={'/movie-category'}>Movie-Category</Link>,
@@ -768,49 +787,57 @@ export default function Header() {
                     <a href="/">
                         <img src="/images/header/logo.png" alt="" />
                     </a>
-                    {isMobile ? null : (
-                        <div className="flex-1">
-                            <Menu
-                                className="bg-transparent text-[#fff]"
-                                onClick={handleClickMenuHeader}
-                                selectedKeys={[current]}
-                                mode="horizontal"
-                                items={headerNavidata}
-                            />
-                        </div>
-                    )}
+                    <div className="lg:block hidden flex-1">
+                        <Menu
+                            className="bg-transparent text-[#fff]"
+                            onClick={handleClickMenuHeader}
+                            selectedKeys={[current]}
+                            mode="horizontal"
+                            items={headerNavidata}
+                        />
+                    </div>
                 </div>
                 <div className="flex items-center gap-3">
-                    {isMobile ? null : (
-                        <Fragment>
-                            <div style={{}} className="h-[50px] rounded-[10px] overflow-hidden flex items-center">
-                                <Select
-                                    className="h-[100%] select-ant-none-radius"
-                                    style={{ width: 140, borderRadius: 0 }}
-                                    options={cate}
-                                    value={cateSelected}
-                                    onChange={handleChangeCate}
-                                />
-                                <input
-                                    className="h-[100%] border-none px-2 w-[250px]"
-                                    style={{
-                                        outline: 'none',
-                                    }}
-                                    type="text"
-                                    placeholder="Search Movie , Video , Music"
-                                />
-                                <button className="bg-[#000] text-[#fff] h-full w-[50px]">
-                                    <i className="bi bi-search-heart"></i>
-                                </button>
-                            </div>
-                            <button className="bg-[#000] text-[#fff] h-[50px] w-[180px] rounded-[10px] ">
-                                sign up
+                    <div className=""></div>
+                    <Fragment>
+                        <div style={{}} className="h-[50px] rounded-[10px] overflow-hidden lg:flex hidden items-center">
+                            <Select
+                                className="h-[100%] select-ant-none-radius"
+                                style={{ width: 140, borderRadius: 0 }}
+                                options={cate}
+                                value={cateSelected}
+                                onChange={handleChangeCate}
+                            />
+                            <input
+                                className="h-[100%] border-none px-2 w-[250px]"
+                                style={{
+                                    outline: 'none',
+                                }}
+                                type="text"
+                                placeholder="Search Movie , Video , Music"
+                            />
+                            <button className="bg-[#000] text-[#fff] h-full w-[50px]">
+                                <i className="bi bi-search-heart"></i>
                             </button>
-                        </Fragment>
-                    )}
+                        </div>
+                        <button className="bg-[#000] text-[#fff] h-[50px] w-[180px] rounded-[10px] lg:block hidden">
+                            sign up
+                        </button>
+                    </Fragment>
+
                     <button className="w-[50px] h-[50px] bg-[rgba(0,0,0,0.2)] rounded-[10px] flex justify-center items-center">
                         <img src="/images/header/bars.png" className="object-contain" alt="" />
                     </button>
+
+                    <div className="absolute w-[300px] bg-red-500" style={{ top: `${HEADER_HEIGHT}px`, right: '0px' }}>
+                        <Menu
+                            className="bg-transparent text-[#fff]"
+                            onClick={handleClickMenuHeader}
+                            selectedKeys={[current]}
+                            mode="inline"
+                            items={headerNavidata}
+                        />
+                    </div>
                 </div>
             </div>
             <Modal visible={isModalVisible} onCancel={closeModal} footer={null} width={'60vw'} height={'600px'}>
