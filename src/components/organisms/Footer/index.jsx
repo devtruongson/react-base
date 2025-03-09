@@ -8,7 +8,7 @@ import p4 from '../../../../public/images/content/p4.jpg';
 import p5 from '../../../../public/images/content/p5.jpg';
 import p6 from '../../../../public/images/content/p6.jpg';
 import { FacebookOutlined, LinkedinOutlined, TwitterSquareFilled, YoutubeOutlined } from '@ant-design/icons';
-import { Fragment, useMemo, useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import f1 from '../../../../public/images/content/f1.jpg';
 import f2 from '../../../../public/images/content/f2.jpg';
 import Indicator from '../../atoms/Indicator';
@@ -151,7 +151,9 @@ const Footer = () => {
             <div className="bg-[#f44343] h-[160px]">
                 <ContainerWapper>
                     <div className="flex lg:flex-row flex-col justify-between items-center">
-                        <p className="uppercase text-[30px] font-[500] text-white">get update sign up now !</p>
+                        <p className="uppercase lg:text-[30px] text-[24px] font-[500] text-white lg:mb-0 mb-[8px]">
+                            get update sign up now !
+                        </p>
                         <div className="border-solid border-[1px] border-[#f3c600] lg:w-auto w-[90%]">
                             <input
                                 type="text"
