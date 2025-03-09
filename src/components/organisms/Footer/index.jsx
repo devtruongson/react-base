@@ -65,14 +65,39 @@ const socials = [
 
 const Footer = () => {
     const sliderRef = useRef(null);
-    const isMobile = useMemo(() => window.innerWidth <= 768, []);
 
     const settings = {
         dots: false,
         infinite: true,
         speed: 800,
-        slidesToShow: isMobile ? 1 : 6,
+        slidesToShow: 6,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
     };
 
     const handlePrev = () => {
@@ -125,15 +150,15 @@ const Footer = () => {
 
             <div className="bg-[#f44343] h-[160px]">
                 <ContainerWapper>
-                    <div className="flex sm:flex-row flex-col justify-between items-center">
+                    <div className="flex lg:flex-row flex-col justify-between items-center">
                         <p className="uppercase text-[30px] font-[500] text-white">get update sign up now !</p>
-                        <div className="border-solid border-[1px] border-[#f3c600] sm:w-auto w-[90%]">
+                        <div className="border-solid border-[1px] border-[#f3c600] lg:w-auto w-[90%]">
                             <input
                                 type="text"
-                                className="bg-[#f44343] text-[#ffffff61] py-[8px] px-[16px] sm:w-[400px] w-[70%] outline-none"
+                                className="bg-[#f44343] text-[#ffffff61] py-[8px] px-[16px] lg:w-[400px] w-[70%] outline-none"
                                 placeholder="Enter Your Email"
                             />
-                            <button className="bg-white text-[16px] text-[#f44343] py-[8px] px-[20px] sm:w-auto w-[30%]">
+                            <button className="bg-white text-[16px] text-[#f44343] py-[8px] px-[20px] lg:w-auto w-[30%]">
                                 Submit
                             </button>
                         </div>
@@ -144,12 +169,12 @@ const Footer = () => {
             <div className="bg-[#000] py-[60px]">
                 <ContainerWapper>
                     <div className="w-[100%] text-[#ffffff61]">
-                        <div className="w-[100%] flex sm:flex-row flex-col justify-between items-start mb-[40px] sm:px-0 px-[20px]">
+                        <div className="w-[100%] flex lg:flex-row md:grid md:grid-cols-2 flex-col justify-between items-start mb-[40px] lg:px-0 px-[20px]">
                             {cates.map((item, index) => {
                                 return <ItemCommon key={index} data={item} isUl={index !== cates.length - 1} />;
                             })}
                         </div>
-                        <div className="w-[100%] flex sm:flex-row flex-col justify-between items-center sm:px-0 px-[20px] sm:gap-0 gap-[20px]">
+                        <div className="w-[100%] flex lg:flex-row flex-col justify-between items-center lg:px-0 px-[20px] lg:gap-0 gap-[20px]">
                             <p className="text-[16px] text-center">
                                 Copyright 2022-23 <span className="text-[#f44343] text-[14px]">Movie Pro</span>. All
                                 rights reserved - Design by <span className="text-[#f44343]">FStack</span>
@@ -171,7 +196,7 @@ export default Footer;
 
 const ItemCommon = ({ data, isUl = true }) => {
     return (
-        <div className="sm:mb-0 mb-[28px]">
+        <div className="lg:mb-0 mb-[28px]">
             <p className="text-white text-[16px] font-[400] uppercase mb-[15px]">{data?.label}</p>
             <Indicator />
             {isUl ? (

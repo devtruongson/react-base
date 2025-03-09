@@ -64,8 +64,8 @@ const BlogCategory = () => {
     return (
         <MainTemplate>
             <ContainerWapper>
-                <div className="w-[100%] flex sm:flex-row flex-col justify-between sm:items-start items-center sm:gap-0 gap-[20px] py-[100px] ">
-                    <div className="sm:w-[70%] w-[95%] flex flex-col justify-start items-center gap-[40px]">
+                <div className="w-[100%] flex lg:flex-row flex-col justify-between lg:items-start items-center lg:gap-0 gap-[20px] py-[100px] ">
+                    <div className="lg:w-[70%] w-[95%] flex flex-col justify-start items-center gap-[40px]">
                         {data?.length ? (
                             data.map((item) => {
                                 return <BlogCard key={item?.id} data={item} children={null} />;
@@ -74,7 +74,7 @@ const BlogCategory = () => {
                             <Empty />
                         )}
                     </div>
-                    <div className="sm:w-[25%] w-[95%] py-[40px] px-[30px] bg-white rounded-[10px]" style={boxShadow}>
+                    <div className="lg:w-[25%] w-[95%] py-[40px] px-[30px] bg-white rounded-[10px]" style={boxShadow}>
                         <BlogRight />
                     </div>
                 </div>

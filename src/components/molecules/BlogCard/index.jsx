@@ -30,7 +30,7 @@ const BlogCard = ({ data, children, isAll = true }) => {
 
                 <div className="">{children}</div>
 
-                <div className="border-t-[1px] border-solid border-[#ccc] px-[35px] flex sm:flex-row flex-col justify-between items-center">
+                <div className="border-t-[1px] border-solid border-[#ccc] px-[35px] flex md:flex-row flex-col justify-between items-center">
                     <div className="grid grid-cols-2 sm:flex justify-start items-center gap-[20px] py-[15px] sm:w-auto w-[100%]">
                         {[
                             {
