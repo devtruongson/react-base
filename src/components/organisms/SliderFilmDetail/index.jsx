@@ -15,8 +15,8 @@ const SliderFilmDetail = ({ data, image }) => {
     );
 
     return (
-        <div className="flex sm:flex-row flex-col justify-center sm:p-[0] p-[10px]">
-            <div className="sm:w-[35%] w-[100%] text-start pl-[20px]">
+        <div className="flex lg:flex-row flex-col justify-center md:p-[0] p-[10px]">
+            <div className="lg:w-[35%] w-[100%] text-start pl-[20px]">
                 <p className="text-[14px] mb-[10px]">{data?.categories?.map((item) => item?.name).join(' / ')}</p>
                 <p className="text-[12px]">{data?.languages?.join(', ')}</p>
 
@@ -52,8 +52,8 @@ const SliderFilmDetail = ({ data, image }) => {
                     <span className="relative z-10">Book now</span>
                 </button>
             </div>
-            <div className="sm:w-[65%] w-[100%] sm:mt-0 mt-[30px]">
-                <img src={image ? image : slider} alt="image" className="w-full object-cover" />
+            <div className="lg:w-[65%] w-[100%] md:mt-0 mt-[30px]">
+                <img src={image ? image : slider} alt="image" className="w-[100%] object-cover" />
             </div>
         </div>
     );

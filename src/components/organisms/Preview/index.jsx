@@ -39,7 +39,7 @@ const Preview = ({ data }) => {
 
     return (
         <div
-            className="relative w-full h-[385px] shadow-2xl overflow-hidden bg-cover bg-center border-solid border-[4px] border-white p-[20px]"
+            className="relative w-[100%] h-[385px] shadow-2xl overflow-hidden bg-cover bg-center border-solid border-[4px] border-white p-[20px]"
             style={{ backgroundImage: `url(${mainSliderBg})` }}
         >
             <div className="absolute inset-0 bg-black bg-opacity-[80%] flex justify-center items-center">
@@ -66,7 +66,7 @@ const Preview = ({ data }) => {
                     </div>
                 </div>
             </div>
-            <div className="relative z-10 text-white  h-full  flex-col justify-end sm:flex hidden">
+            <div className="relative z-10 text-white h-full flex-col justify-end sm::flex hidden">
                 <div className="">
                     <div className="flex items-center gap-[10px]">
                         <HeartOutlined className="mt-[10px] text-[20px]" />

@@ -100,16 +100,16 @@ const MovieBooking = () => {
             </div>
 
             <ContainerWapper>
-                <div className="flex sm:flex-row flex-col justify-between sm:items-start items-center mt-[40px] sm:gap-0 gap-[20px]">
+                <div className="flex lg:flex-row flex-col justify-between lg:items-start items-center mt-[40px] lg:gap-0 gap-[20px]">
                     <div
-                        className="sm:w-[70%] w-[95%] rounded-[10px] overflow-hidden bg-white"
+                        className="lg:w-[70%] w-[95%] rounded-[10px] overflow-hidden bg-white"
                         style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}
                     >
                         <Cinemas filmId={data?.id} currentDate={currentDate} />
                     </div>
 
                     <div
-                        className="sm:w-[28%] w-[95%] rounded-[10px] p-[24px] bg-white"
+                        className="lg:w-[28%] w-[95%] rounded-[10px] p-[24px] bg-white"
                         style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}
                     >
                         <SearchInput />
