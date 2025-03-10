@@ -63,7 +63,7 @@ export default function Header() {
                     type: 'divider',
                 },
                 {
-                    label: 'Index - IV',
+                    label: <Link to={'/film-detail'}>Index - IV</Link>,
                     key: 'Index - IV',
                 },
             ],
@@ -718,14 +718,14 @@ export default function Header() {
                     children: [
                         {
                             label: (
-                                <Link to={'/blog-category'} className="lg:text-black text-white">
+                                <Link to={'/blog_category'} className="lg:text-black text-white">
                                     Blog-Category
                                 </Link>
                             ),
                             key: 'Blog-Category',
                         },
                         {
-                            label: <Link to={'/blog-single'}>Blog-Single</Link>,
+                            label: <Link to={'/blog_single/1'}>Blog-Single</Link>,
                             key: 'Blog-Single',
                         },
                     ],
