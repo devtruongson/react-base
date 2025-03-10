@@ -780,6 +780,8 @@ export default function Header() {
         },
     ];
 
+    const [isShowModal, setShowModal] = useState(false);
+
     return (
         <header className="bg-[#ff4444] h-[100px] flex items-center">
             <div className="px-[15px] flex justify-between items-center w-full">
@@ -825,19 +827,26 @@ export default function Header() {
                         </button>
                     </Fragment>
 
-                    <button className="w-[50px] h-[50px] bg-[rgba(0,0,0,0.2)] rounded-[10px] flex justify-center items-center">
+                    <button
+                        className="w-[50px] h-[50px] bg-[rgba(0,0,0,0.2)] rounded-[10px] flex justify-center items-center"
+                        onClick={() => setShowModal(!isShowModal)}
+                    >
                         <img src="/images/header/bars.png" className="object-contain" alt="" />
                     </button>
-
-                    <div className="absolute w-[300px] bg-red-500" style={{ top: `${HEADER_HEIGHT}px`, right: '0px' }}>
-                        <Menu
-                            className="bg-transparent text-[#fff]"
-                            onClick={handleClickMenuHeader}
-                            selectedKeys={[current]}
-                            mode="inline"
-                            items={headerNavidata}
-                        />
-                    </div>
+                    {isShowModal ? (
+                        <div
+                            className="absolute w-[300px] bg-red-500 "
+                            style={{ top: `${HEADER_HEIGHT}px`, right: '0px' }}
+                        >
+                            <Menu
+                                className="bg-transparent text-[#fff]"
+                                onClick={handleClickMenuHeader}
+                                selectedKeys={[current]}
+                                mode="inline"
+                                items={headerNavidata}
+                            />
+                        </div>
+                    ) : null}
                 </div>
             </div>
             <Modal visible={isModalVisible} onCancel={closeModal} footer={null} width={'60vw'} height={'600px'}>
