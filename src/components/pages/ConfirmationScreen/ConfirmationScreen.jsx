@@ -1,7 +1,7 @@
 import { CheckCircleOutlined, QrcodeOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import MainTemplate from '../../templates/MainTemplate';
-import { PartnersCarousel } from '../Contact';
+// import { PartnersCarousel } from '../Contact';
 
 const BookingConfirmation = () => {
     return (
@@ -57,9 +57,9 @@ const BookingConfirmation = () => {
                         </div>
                     </div>
                 </div>
-                <div className="mt-10">
+                {/* <div className="mt-10">
                     <PartnersCarousel />
-                </div>
+                </div> */}
             </div>
         </MainTemplate>
     );

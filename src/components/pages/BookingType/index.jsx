@@ -1,13 +1,23 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Card, Checkbox, Divider, Layout, Radio, Typography } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../../routes';
 const { Header, Content } = Layout;
 const { Title, Text } = Typography;
 
 const MovieTicketBooking = () => {
+    const navigate = useNavigate();
     return (
         <Layout className="min-h-screen bg-gray-100">
             <Header className="bg-gray-800 flex items-center h-14 px-4">
-                <Button type="text" icon={<ArrowLeftOutlined />} className="text-white mr-4">
+                <Button
+                    type="text"
+                    icon={<ArrowLeftOutlined />}
+                    className="text-white mr-4"
+                    onClick={() =>
+                        navigate(routes.seat_booking.replace(':id', '1?filmId=1&date=2025/03/11&time=12:30AM'))
+                    }
+                >
                     BACK
                 </Button>
                 <Text className="text-white text-lg">AQUAMAN - ENGLISH - (2:47)</Text>
@@ -111,7 +121,12 @@ const MovieTicketBooking = () => {
                                     <Text className="font-semibold">Rs.860.80</Text>
                                 </div>
 
-                                <Button type="primary" block className="mt-2 bg-blue-600">
+                                <Button
+                                    type="primary"
+                                    block
+                                    className="mt-2 bg-blue-600"
+                                    onClick={() => navigate(routes.confirmation_screen)}
+                                >
                                     Proceed to Pay
                                 </Button>
                             </Card>

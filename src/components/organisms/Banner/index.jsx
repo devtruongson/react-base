@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import banner from '../../../../public/images/banner.jpg';
 import { HEIGHT_BANNER } from '../../../constants';
+import { routes } from '../../../routes';
 
 const Banner = () => {
     const pathname = useLocation().pathname;
@@ -17,6 +18,12 @@ const Banner = () => {
         }
         if (pathname.includes('/blog_single')) {
             return 'Blog Single Page';
+        }
+        if (pathname.includes(routes.confirmation_screen)) {
+            return ' Confirmation Screen';
+        }
+        if (pathname.includes(routes.about)) {
+            return 'About';
         }
         return '';
     }, [pathname]);

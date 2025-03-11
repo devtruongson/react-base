@@ -136,9 +136,9 @@ const ContactUs = () => {
                 <div>
                     <ContactInfoCard />
                 </div>
-                <div>
+                {/* <div>
                     <PartnersCarousel />
-                </div>
+                </div> */}
             </div>
         </MainTemplate>
     );

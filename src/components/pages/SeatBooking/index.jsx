@@ -69,7 +69,10 @@ const SeatBooking = () => {
                         </div>
 
                         <div className="">
-                            <button className="uppercase w-[150px] h-[35px] bg-[#ff4444] border-[1px] border-solid border-[#ff4444] text-[#fff] rounded-[8px] hover:bg-[#3f414f] hover:text-[#ff4444]">
+                            <button
+                                className="uppercase w-[150px] h-[35px] bg-[#ff4444] border-[1px] border-solid border-[#ff4444] text-[#fff] rounded-[8px] hover:bg-[#3f414f] hover:text-[#ff4444]"
+                                onClick={() => navigate(routes.bookingType)}
+                            >
                                 Proceed to Pay
                             </button>
                         </div>
