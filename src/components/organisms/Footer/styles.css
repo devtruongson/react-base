@@ -1,4 +1,10 @@
-.slick-arrow{
-  
+.slick-arrow {
+
     display: none !important;
+}
+
+.arrow_show {
+    .slick-arrow {
+        display: block !important;
+    }
 }

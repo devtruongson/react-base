@@ -1,7 +1,8 @@
 import { Carousel, Menu, Modal, Select } from 'antd';
 import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HEADER_HEIGHT } from '../../../constants';
+import LoginModal from '../ModalAuth';
+import MovieProDrawer from '../ModalNav';
 
 export default function Header() {
     const [cate, setCate] = useState();
@@ -780,6 +781,26 @@ export default function Header() {
         },
     ];
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [isMenuOpenMobile, setIsMenuOpenMobile] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    const showDrawer = () => {
+        setOpen(true);
+    };
+
+    const onClose = () => {
+        setOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+    const onFinish = (values) => {
+        console.log('Success:', values);
+    };
+
     return (
         <header className="bg-[#ff4444] h-[100px] flex items-center">
             <div className="px-[15px] flex justify-between items-center w-full">
@@ -820,24 +841,38 @@ export default function Header() {
                                 <i className="bi bi-search-heart"></i>
                             </button>
                         </div>
-                        <button className="bg-[#000] text-[#fff] h-[50px] w-[180px] rounded-[10px] lg:block hidden">
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className="bg-[#000] text-[#fff] h-[50px] w-[180px] rounded-[10px] lg:block hidden"
+                        >
                             sign up
                         </button>
                     </Fragment>
 
-                    <button className="w-[50px] h-[50px] bg-[rgba(0,0,0,0.2)] rounded-[10px] flex justify-center items-center">
+                    <button
+                        onClick={showDrawer}
+                        className="w-[50px] h-[50px]  bg-[rgba(0,0,0,0.2)] rounded-[10px] flex justify-center items-center"
+                    >
                         <img src="/images/header/bars.png" className="object-contain" alt="" />
                     </button>
-
-                    <div className="absolute w-[300px] bg-red-500" style={{ top: `${HEADER_HEIGHT}px`, right: '0px' }}>
-                        <Menu
-                            className="bg-transparent text-[#fff]"
-                            onClick={handleClickMenuHeader}
-                            selectedKeys={[current]}
-                            mode="inline"
-                            items={headerNavidata}
-                        />
-                    </div>
+                    {/* 
+                    <button className="w-[50px] h-[50px] pc-hidden bg-[rgba(0,0,0,0.2)] rounded-[10px] flex justify-center items-center">
+                        <img src="/images/header/bars.png" className="object-contain" alt="" />
+                    </button> */}
+                    {/* {isMenuOpenMobile && (
+                        <div
+                            className="absolute w-[300px] block md:hidden bg-red-500 z-[9999]"
+                            style={{ top: `${HEADER_HEIGHT}px`, right: '0px' }}
+                        >
+                            <Menu
+                                className="bg-transparent text-[#fff]"
+                                onClick={handleClickMenuHeader}
+                                selectedKeys={[current]}
+                                mode="inline"
+                                items={headerNavidata}
+                            />
+                        </div>
+                    )} */}
                 </div>
             </div>
             <Modal visible={isModalVisible} onCancel={closeModal} footer={null} width={'60vw'} height={'600px'}>
@@ -855,6 +890,13 @@ export default function Header() {
                     ></iframe>
                 </div>
             </Modal>
+            <LoginModal
+                handleCancel={handleCancel}
+                isModalOpen={isModalOpen}
+                onFinish={onFinish}
+                setIsModalOpen={setIsModalOpen}
+            />
+            <MovieProDrawer onClose={onClose} open={open} showModal={() => setIsModalOpen(true)} />
         </header>
     );
 }

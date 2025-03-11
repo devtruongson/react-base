@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
+import { Popover } from 'antd';
 import { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import screen from '../../../../public/images/content/screen.png';
+import { formatVND } from '../../../helpers/formatVND';
 import { routes } from '../../../routes';
 import ContainerWapper from '../../templates/ContainerWapper';
-import screen from '../../../../public/images/content/screen.png';
-import { Popover } from 'antd';
-import { formatVND } from '../../../helpers/formatVND';
 
 const data = {
     film: {
@@ -21,14 +21,14 @@ const data = {
 const SeatBooking = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const queryParams = useMemo(() => Object.fromEntries(searchParams.entries()), [searchParams]);
+    const queryParams = useMemo(() => Object?.fromEntries(searchParams.entries()), [searchParams]);
 
     const [booking, setBooking] = useState([]);
 
     const formatDate = useMemo(() => {
         if (!queryParams?.date) return '';
 
-        const date = new Date(queryParams.date);
+        const date = new Date(queryParams?.date);
         const today = new Date();
 
         const isToday = date.toDateString() === today.toDateString();
@@ -64,7 +64,7 @@ const SeatBooking = () => {
                                 <p className="uppercase text-[20px] font-[400]">{`(${data?.film?.duration})`}</p>
                             </div>
                             <p className="text-center uppercase text-[#ffffff61] text-[16px]">
-                                {formatDate}, {queryParams?.time.replace(/(AM|PM)/, ' $1')}
+                                {formatDate}, {queryParams?.time?.replace(/(AM|PM)/, ' $1')}
                             </p>
                         </div>
 

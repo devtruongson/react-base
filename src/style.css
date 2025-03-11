@@ -62,3 +62,35 @@ li {
     position: absolute;
     left    : 0 !important;
 }
+
+.pc-hidden {
+    display: none !important;
+}
+
+.mobile-hidden {
+    display: block !important;
+}
+
+@media (max-width: 576px) {
+    .pc-hidden {
+        display: block !important;
+    }
+
+    .mobile-hidden {
+        display: none !important;
+    }
+}
+
+.custom_card .custom {
+    width: 210px;
+
+    img {
+        width : 100% !important;
+        height: 200px;
+    }
+
+    .custom_level_2 {
+        width : 100% !important;
+        height: 200px;
+    }
+}

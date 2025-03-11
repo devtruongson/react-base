@@ -2,8 +2,8 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Rate } from 'antd';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../../routes';
 import thumbnailDefault from '../../../../public/images/content/movie_category/up6.jpg';
+import { routes } from '../../../routes';
 
 /* eslint-disable react/prop-types */
 const Card = ({ data }) => {
@@ -13,8 +13,8 @@ const Card = ({ data }) => {
         [data?.id, navigate],
     );
     return (
-        <div className="w-[300px] rounded-[10px] overflow-hidden shadow-lg">
-            <div className="relative group w-[300px] h-[400px] overflow-hidden rounded-lg">
+        <div className="w-[270px] rounded-[10px] overflow-hidden shadow-lg custom">
+            <div className="relative group w-[270px] h-[400px] overflow-hidden rounded-lg custom_level_2">
                 <img alt="thumbnail" src={data?.thumbnail || thumbnailDefault} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-500"></div>
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
