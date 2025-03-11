@@ -172,7 +172,7 @@ const Footer = () => {
             <div className="bg-[#000] py-[60px]">
                 <ContainerWapper>
                     <div className="w-[100%] text-[#ffffff61]">
-                        <div className="w-[100%] flex lg:flex-row md:grid md:grid-cols-2 flex-col justify-between items-start mb-[40px] lg:px-0 px-[20px]">
+                        <div className="w-[100%] md:grid md:grid-cols-2 lg:flex lg:flex-row flex-col justify-between items-start mb-[40px] lg:px-0 px-[20px]">
                             {cates.map((item, index) => {
                                 return <ItemCommon key={index} data={item} isUl={index !== cates.length - 1} />;
                             })}
