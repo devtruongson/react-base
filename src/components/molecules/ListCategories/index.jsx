@@ -3,6 +3,7 @@ import { CaretRightOutlined } from '@ant-design/icons';
 import Empty from '../../organisms/Empty';
 
 const ListCategories = ({ data }) => {
+    // const
     return (
         <div>
             {data?.length ? (

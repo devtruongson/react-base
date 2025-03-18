@@ -3,7 +3,7 @@
 import { queryOptions, useQuery } from '@tanstack/react-query';
 import api from '../../libs/axios';
 
-export const GET_TODO_QUERY_KEY = 'communes';
+export const GET_TODO_QUERY_KEY = '';
 
 const getTodo = async (payload) => {
     console.log(payload);

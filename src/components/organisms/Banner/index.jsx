@@ -25,6 +25,9 @@ const Banner = () => {
         if (pathname.includes(routes.about)) {
             return 'About';
         }
+        if (pathname.includes(routes.movie_category)) {
+            return 'Movie Category';
+        }
         return '';
     }, [pathname]);
 

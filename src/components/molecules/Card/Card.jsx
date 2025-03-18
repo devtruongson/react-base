@@ -27,10 +27,10 @@ const Card = ({ data }) => {
                 </div>
             </div>
 
-            <div className="p-[20px] flex justify-between items-center bg-white">
+            <div className="w-[100%] p-[20px] flex justify-between items-center bg-white">
                 <div className="flex flex-col items-start gap-[10px]">
-                    <p className="text-[18px] font-[600]">{data?.name}</p>
-                    <p className="text-[16px] text-[#707070]">
+                    <p className="text-[18px] font-[600] line-clamp-1">{data?.name}</p>
+                    <p className="text-[16px] text-[#707070] line-clamp-2">
                         {data?.categories?.map((item) => item.name).join(' , ')}
                     </p>
                     <Rate allowHalf defaultValue={data?.rate} className="text-[#ff4444] text-[16px]" />
