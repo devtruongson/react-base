@@ -26,25 +26,15 @@ const MovieCate = () => {
 
     const { data: dataMovies } = useGetAllMovies({});
 
-    const targetGenres = useMemo(
-        () =>
-            data?.data?.slice(0, 3)?.map((item) => {
-                return {
-                    cate: item?.name,
-                    data: dataMovies?.data
-                        ?.filter((movie) => {
-                            if (movie?.genres?.find((genres) => genres?.genre_id === item?.id)) {
-                                return true;
-                            }
-                            return false;
-                        })
-                        ?.map((item) => {
-                            return handleBuilderMovies(item);
-                        }),
-                };
-            }) || [],
-        [data?.data, dataMovies?.data],
-    );
+    const targetGenres = useMemo(() => {
+        if (!data?.data || !dataMovies?.data) return [];
+        return data.data.slice(0, 3).map((item) => ({
+            cate: item.name,
+            data: dataMovies.data
+                .filter((movie) => movie.genres?.some((genre) => genre.genre_id === item.id))
+                .map(handleBuilderMovies),
+        }));
+    }, [data?.data, dataMovies?.data]);
 
     const listMovies = useMemo(
         () =>
