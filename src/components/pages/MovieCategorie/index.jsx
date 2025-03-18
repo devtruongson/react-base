@@ -10,6 +10,8 @@ import { useGetAllGenres } from '../../../services/genres/getAllGenres';
 import { useMemo } from 'react';
 import { useGetAllMovies } from '../../../services/movie/useGetOneMovie';
 import './styles.css';
+import { handleBuilderMovies } from '../../../helpers/handleReBuildMovies';
+import { handleReBuildGenres } from '../../../helpers/handleReBuildGenres';
 
 const { Title } = Typography;
 const MovieCate = () => {
@@ -17,11 +19,7 @@ const MovieCate = () => {
     const genres = useMemo(
         () =>
             data?.data?.map((item) => {
-                return {
-                    id: item?.id,
-                    label: item?.name,
-                    values: Math.floor(Math.random() * (100 - 20 + 1)) + 20,
-                };
+                return handleReBuildGenres(item);
             }) || [],
         [data],
     );
@@ -41,36 +39,18 @@ const MovieCate = () => {
                             return false;
                         })
                         ?.map((item) => {
-                            return {
-                                ...item,
-                                name: item?.title,
-                                thumbnail: item?.poster || '',
-                                trailer_url: item?.trailer || '',
-                                categories: item?.genres || [],
-                                rate: item?.rating || 0,
-                                date: item?.release_date || '',
-                            };
+                            return handleBuilderMovies(item);
                         }),
                 };
             }) || [],
         [data?.data, dataMovies?.data],
     );
 
-    console.log(targetGenres);
-
     const listMovies = useMemo(
         () =>
             dataMovies?.data
                 ?.map((item) => {
-                    return {
-                        ...item,
-                        name: item?.title,
-                        thumbnail: item?.poster || '',
-                        trailer_url: item?.trailer || '',
-                        categories: item?.genres || [],
-                        rate: item?.rating || 0,
-                        date: item?.release_date || '',
-                    };
+                    return handleBuilderMovies(item);
                 })
                 .slice(0, 10) || [],
         [dataMovies],
