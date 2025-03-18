@@ -91,11 +91,9 @@ const SeatBooking = () => {
 
                         <div className="">
                             <div className="flex justify-center items-end gap-[10px]">
-                                <p className="uppercase text-[20px] font-[400]">{data?.film?.name}</p>
+                                <p className="uppercase text-[20px] font-[400]">{film?.name}</p>
                                 <p className="uppercase text-[20px] font-[400]">-</p>
-                                <p className="uppercase text-[20px] font-[400]">{data?.film?.nation}</p>
-                                <p className="uppercase text-[20px] font-[400]">-</p>
-                                <p className="uppercase text-[20px] font-[400]">{`(${data?.film?.duration})`}</p>
+                                <p className="uppercase text-[20px] font-[400]">{`(${film?.duration})`}</p>
                             </div>
                             <p className="text-center uppercase text-[#ffffff61] text-[16px]">
                                 {formatDate}, {queryParams?.time?.replace(/(AM|PM)/, ' $1')}
