@@ -13,7 +13,7 @@ import BlogSingle from './components/pages/BlogSingle';
 import MovieTicketBooking from './components/pages/BookingType';
 import ConfirmationScreen from './components/pages/ConfirmationScreen/ConfirmationScreen';
 import Contact from './components/pages/Contact';
-import FilmDetail from './components/pages/FilmDetail/FilmDetail';
+import FilmDetail from './components/pages/FilmDetail';
 import MovieBooking from './components/pages/MovieBooking';
 import MovieCate from './components/pages/MovieCategorie';
 import SeatBooking from './components/pages/SeatBooking';
@@ -35,7 +35,7 @@ function App() {
 
             {/* router user */}
             <Routes>
-                <Route path={routes.film_detail} element={<FilmDetail />}></Route>
+                <Route path={routes.film_detail} element={<FilmDetail />} />
                 <Route path={routes.movie_booking} element={<MovieBooking />} />
                 <Route path={routes.seat_booking} element={<SeatBooking />} />
                 <Route path={routes.contact} element={<Contact />} />

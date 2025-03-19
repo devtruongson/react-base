@@ -1,5 +1,5 @@
 export const routes = {
-    film_detail: '/film_detail', // index4.html
+    film_detail: '/film_detail/:id', // index4.html
     movie_booking: '/movie_booking/:id', //
     seat_booking: '/seat_booking/:id',
     contact: '/contact',

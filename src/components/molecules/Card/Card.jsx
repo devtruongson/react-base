@@ -21,7 +21,10 @@ const Card = ({ data }) => {
                     <button className="px-6 py-3 bg-[#ff4444] text-white hover:bg-transparent rounded-lg transform -translate-x-32 group-hover:translate-x-0 transition-all duration-500 border-[1px] border-[#ff4444]">
                         View Trailer
                     </button>
-                    <button className="px-6 py-3 border-[1px] border-[#ff4444] text-white rounded-lg transform translate-x-32 group-hover:translate-x-0 transition-all duration-500 hover:bg-[#ff4444]">
+                    <button
+                        className="px-6 py-3 border-[1px] border-[#ff4444] text-white rounded-lg transform translate-x-32 group-hover:translate-x-0 transition-all duration-500 hover:bg-[#ff4444]"
+                        onClick={() => navigate(routes.film_detail.replace(':id', data?.id))}
+                    >
                         View Details
                     </button>
                 </div>

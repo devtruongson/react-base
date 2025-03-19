@@ -8,18 +8,17 @@ import { CaretRightOutlined, HeartOutlined } from '@ant-design/icons';
 const Preview = ({ data }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
-        console.log('run');
         setIsModalOpen(true);
     };
-
     const handleCancel = () => {
         setIsModalOpen(false);
     };
 
+    const votes = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+    const trailer_url = useMemo(() => `https://www.youtube.com/embed/${data?.trailer_url.split('?v=')[1]}`, [data]);
     const date = useMemo(() => {
         const inputDate = '2025/01/01';
         const date = new Date(inputDate);
-
         return new Intl.DateTimeFormat('en-GB', {
             day: 'numeric',
             month: 'short',
@@ -27,15 +26,6 @@ const Preview = ({ data }) => {
         }).format(date);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data?.date]);
-
-    const time = useMemo(() => {
-        if (data?.duration) {
-            // eslint-disable-next-line no-unsafe-optional-chaining
-            const [hours, minutes] = data?.duration?.split(':').map(Number);
-            return `${hours} hrs ${minutes} mins`;
-        }
-        return '';
-    }, [data?.duration]);
 
     return (
         <div
@@ -56,7 +46,7 @@ const Preview = ({ data }) => {
                     <p>{data?.languages?.join(', ')}</p>
                     <p>{data?.categories?.map((item) => item?.name).join(' | ')}</p>
                     <div className="flex justify-center items-center gap-[4px]">
-                        {data?.graphics.map((item, index) => {
+                        {data?.graphics?.map((item, index) => {
                             return (
                                 <div className="bg-white text-[#111111] px-[8px] rounded-[4px]" key={index}>
                                     {item?.name}
@@ -66,13 +56,15 @@ const Preview = ({ data }) => {
                     </div>
                 </div>
             </div>
-            <div className="relative z-10 text-white h-full flex-col justify-end sm::flex hidden">
+            <div className="relative z-10 text-white h-full flex-col justify-end sm:flex hidden">
                 <div className="">
                     <div className="flex items-center gap-[10px]">
                         <HeartOutlined className="mt-[10px] text-[20px]" />
                         <div className="text-start ">
-                            <p className="text-[#F3C600] text-[26px] font-[400]">{data?.like}%</p>
-                            <p className="text-[14px]">{data?.votes} votes</p>
+                            <p className="text-[#F3C600] text-[26px] font-[400]">
+                                {((data?.rating / 10) * 100).toFixed(2)}%
+                            </p>
+                            <p className="text-[14px]">{votes} votes</p>
                         </div>
                     </div>
                 </div>
@@ -81,16 +73,16 @@ const Preview = ({ data }) => {
                     <Socials />
                     <div className="flex justify-end items-center gap-[20px]">
                         <p>{date}</p>
-                        <p>{time}</p>
+                        <p>{data?.duration} minute</p>
                     </div>
                 </div>
             </div>
 
             <Modal open={isModalOpen} onCancel={handleCancel} width={700} footer="">
-                <div className="fle justify-center items-center mt-[30px]">
+                <div className="flex justify-center items-center mt-[30px]">
                     <iframe
                         className="w-full h-[315px]"
-                        src={data?.trailer_url || ''}
+                        src={trailer_url || ''}
                         title="YouTube video player"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
