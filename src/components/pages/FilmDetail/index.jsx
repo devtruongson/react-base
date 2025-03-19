@@ -10,29 +10,6 @@ import { useMemo } from 'react';
 import { handleBuilderMovies } from '../../../helpers/handleReBuildMovies';
 import { useGetAllMovies } from '../../../services/movie/useGetOneMovie';
 
-// const movieTrending = [
-//     {
-//         id: 1,
-//         name: 'KGF',
-//         view: 1050,
-//     },
-//     {
-//         id: 2,
-//         name: 'Pretham 2    ',
-//         view: 100,
-//     },
-//     {
-//         id: 3,
-//         name: 'Maari2',
-//         view: 50,
-//     },
-//     {
-//         id: 4,
-//         name: 'Njan Prakasan',
-//         view: 1050,
-//     },
-// ];
-
 const settings = {
     dots: false,
     infinite: true,

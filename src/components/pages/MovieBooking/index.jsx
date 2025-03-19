@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ListCalendar from '../../organisms/ListCalendar/ListCalendar';
 import Preview from '../../organisms/Preview';
 import ContainerWapper from '../../templates/ContainerWapper';
@@ -7,91 +7,27 @@ import Cinemas from '../../organisms/Cinemas';
 import SearchInput from '../../atoms/Input/SearchInput';
 import LabelCommon from '../../atoms/LabelCommon';
 import ListCategories from '../../molecules/ListCategories';
-
-const data = {
-    id: 1,
-    name: 'Aquaman',
-    trailer_url: 'https://www.youtube.com/embed/d_S6HyolN_w',
-    categories: [
-        {
-            id: 1,
-            name: 'ACTION',
-        },
-        {
-            id: 22,
-            name: 'Adventure',
-        },
-        {
-            id: 3,
-            name: 'Fantasy',
-        },
-    ],
-    graphics: [
-        {
-            id: 1,
-            name: '2D',
-        },
-        {
-            id: 2,
-            name: '3D',
-        },
-        {
-            id: 3,
-            name: '4D',
-        },
-    ],
-    languages: ['ENGLISH', 'HINDI', 'TAMIL'],
-    duration: '2:23', // thoi luong
-    date: '2025/01/01',
-    like: 85,
-    votes: 52291,
-    rate: 4.5,
-    banners: [
-        'http://127.0.0.1:5500/client/html/filmgo/html/images/index_III/01.jpg',
-        'http://127.0.0.1:5500/client/html/filmgo/html/images/index_III/01.jpg',
-    ],
-};
-
-const cates = [
-    {
-        id: 1,
-        label: 'all',
-        values: 23123,
-    },
-    {
-        id: 2,
-        label: 'Action',
-        values: 512,
-    },
-    {
-        id: 3,
-        label: 'Romantic',
-        values: 23123,
-    },
-    {
-        id: 4,
-        label: ' Love',
-        values: 23123,
-    },
-    {
-        id: 5,
-        label: 'Musical',
-        values: 23123,
-    },
-    {
-        id: 6,
-        label: 'Drama',
-        values: 23123,
-    },
-];
+import { useParams } from 'react-router-dom';
+import { useGetMovie } from '../../../services/movie/useGetMovie';
+import { handleBuilderMovies } from '../../../helpers/handleReBuildMovies';
+import { useGetAllGenres } from '../../../services/genres/getAllGenres';
+import { handleReBuildGenres } from '../../../helpers/handleReBuildGenres';
 
 const MovieBooking = () => {
+    const { id } = useParams();
     const [currentDate, setCurrentDate] = useState(() => new Date().toISOString().split('T')[0].replace(/-/g, '/'));
+
+    const { data } = useGetMovie({ id: id });
+    const movie = useMemo(() => handleBuilderMovies(data?.data), [data]);
+
+    const { data: GenesData } = useGetAllGenres({});
+    const genres = useMemo(() => GenesData?.data?.map(handleReBuildGenres) || [], [GenesData]);
+
     return (
         <MainTemplate>
             <ContainerWapper>
                 <div className="pt-[20px]">
-                    <Preview data={data} />
+                    <Preview data={movie} />
                 </div>
             </ContainerWapper>
 
@@ -115,7 +51,7 @@ const MovieBooking = () => {
                         <SearchInput />
                         <LabelCommon label={'browse title'} />
 
-                        <ListCategories data={cates} />
+                        <ListCategories data={genres} />
                     </div>
                 </div>
             </ContainerWapper>
