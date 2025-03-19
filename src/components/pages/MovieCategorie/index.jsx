@@ -16,35 +16,26 @@ import { handleReBuildGenres } from '../../../helpers/handleReBuildGenres';
 const { Title } = Typography;
 const MovieCate = () => {
     const { data } = useGetAllGenres({});
-    const genres = useMemo(
-        () =>
-            data?.data?.map((item) => {
-                return handleReBuildGenres(item);
-            }) || [],
-        [data],
-    );
+    const genres = useMemo(() => data?.data?.map(handleReBuildGenres) || [], [data]);
 
     const { data: dataMovies } = useGetAllMovies({});
 
     const targetGenres = useMemo(() => {
         if (!data?.data || !dataMovies?.data) return [];
+        const groupedMovies = dataMovies.data.reduce((acc, movie) => {
+            movie.genres?.forEach(({ genre_id }) => {
+                if (!acc[genre_id]) acc[genre_id] = [];
+                acc[genre_id].push(handleBuilderMovies(movie));
+            });
+            return acc;
+        });
         return data.data.slice(0, 3).map((item) => ({
             cate: item.name,
-            data: dataMovies.data
-                .filter((movie) => movie.genres?.some((genre) => genre.genre_id === item.id))
-                .map(handleBuilderMovies),
+            data: groupedMovies[item.id] || [],
         }));
     }, [data?.data, dataMovies?.data]);
 
-    const listMovies = useMemo(
-        () =>
-            dataMovies?.data
-                ?.map((item) => {
-                    return handleBuilderMovies(item);
-                })
-                .slice(0, 10) || [],
-        [dataMovies],
-    );
+    const listMovies = useMemo(() => dataMovies?.data?.map(handleBuilderMovies).slice(0, 10) || [], [dataMovies]);
 
     return (
         <MainTemplate>
