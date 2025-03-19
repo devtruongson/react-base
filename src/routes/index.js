@@ -1,5 +1,5 @@
 export const routes = {
-    film_detail: '/', // index4.html
+    film_detail: '/film_detail', // index4.html
     movie_booking: '/movie_booking/:id', //
     seat_booking: '/seat_booking/:id',
     contact: '/contact',
@@ -8,5 +8,5 @@ export const routes = {
     blog_single: '/blog_single/:id',
     about: '/about',
     bookingType: '/booking-type',
-    movie_category: '/movie_category',
+    movie_category: '/',
 };
