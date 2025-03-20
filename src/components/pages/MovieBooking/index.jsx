@@ -12,6 +12,7 @@ import { useGetMovie } from '../../../services/movie/useGetMovie';
 import { handleBuilderMovies } from '../../../helpers/handleReBuildMovies';
 import { useGetAllGenres } from '../../../services/genres/getAllGenres';
 import { handleReBuildGenres } from '../../../helpers/handleReBuildGenres';
+import { useGetShowTimes } from '../../../services/showtime/useGetShowTimes';
 
 const MovieBooking = () => {
     const { id } = useParams();
@@ -23,6 +24,7 @@ const MovieBooking = () => {
     const { data: GenesData } = useGetAllGenres({});
     const genres = useMemo(() => GenesData?.data?.map(handleReBuildGenres) || [], [GenesData]);
 
+    const { data: showTimesData } = useGetShowTimes({});
     return (
         <MainTemplate>
             <ContainerWapper>

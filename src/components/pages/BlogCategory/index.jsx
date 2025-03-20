@@ -5,69 +5,20 @@ import Empty from '../../organisms/Empty';
 import ContainerWapper from '../../templates/ContainerWapper';
 import MainTemplate from '../../templates/MainTemplate';
 import BlogRight from '../../organisms/BlogRight';
-const data = [
-    {
-        id: 1,
-        thumbnail: [''],
-        trailer_url: '',
-        date: '2025/03/08',
-        author: 'Admin',
-        title: 'Simplicity is about subtracting the obvious and adding part area of the meaningful',
-        description:
-            'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit sequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet the mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.',
-        likes: 1244,
-        comments: 256,
-        presenter: 1456,
-    },
-    {
-        id: 1,
-        thumbnail: ['', '', ''],
-        trailer_url: '',
-        date: '2025/03/08',
-        author: 'Admin',
-        title: 'Simplicity is about subtracting the obvious and adding part area of the meaningful',
-        description:
-            'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit sequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet the mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.',
-        likes: 1244,
-        comments: 256,
-        presenter: 1456,
-    },
-    {
-        id: 1,
-        thumbnail: ['a'],
-        trailer_url: 'https://www.youtube.com/embed/XVtxye3c4AU',
-        date: '2025/03/08',
-        author: 'Admin',
-        title: 'Simplicity is about subtracting the obvious and adding part area of the meaningful',
-        description:
-            'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit sequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet the mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.',
-        likes: 1244,
-        comments: 256,
-        presenter: 1456,
-    },
-    {
-        id: 1,
-        thumbnail: [],
-        trailer_url: 'https://www.youtube.com/embed/XVtxye3c4AU',
-        date: '2025/03/08',
-        author: 'Admin',
-        title: 'Simplicity is about subtracting the obvious and adding part area of the meaningful',
-        description:
-            'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit sequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet the mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.',
-        likes: 1244,
-        comments: 256,
-        presenter: 1456,
-    },
-];
+import { useGetBlogs } from '../../../services/blog/getBlogs';
+import { useMemo } from 'react';
+import { handleReBuildBlog } from '../../../helpers/handleReBuildBlog';
 
 const BlogCategory = () => {
+    const { data } = useGetBlogs({});
+    const blogs = useMemo(() => data?.data?.map(handleReBuildBlog) || [], [data]);
     return (
         <MainTemplate>
             <ContainerWapper>
                 <div className="w-[100%] flex lg:flex-row flex-col justify-between lg:items-start items-center lg:gap-0 gap-[20px] py-[100px] ">
                     <div className="lg:w-[70%] w-[95%] flex flex-col justify-start items-center gap-[40px]">
-                        {data?.length ? (
-                            data.map((item) => {
+                        {blogs?.length ? (
+                            blogs.map((item) => {
                                 return <BlogCard key={item?.id} data={item} children={null} />;
                             })
                         ) : (
