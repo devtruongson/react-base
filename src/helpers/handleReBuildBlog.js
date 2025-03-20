@@ -10,6 +10,7 @@ export const handleReBuildBlog = (data) => {
         author: 'Admin',
         title: data?.title || '',
         description: data?.description || '',
+        content: data?.content || '',
         likes: useGetRandom(100, 1000),
         comments: useGetRandom(200, 1000),
         presenter: useGetRandom(10, 90),

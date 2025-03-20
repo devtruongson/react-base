@@ -6,6 +6,9 @@ import ListCategories from '../../molecules/ListCategories';
 import Empty from '../Empty';
 import moviePro from '../../../../public/images/content/blog_category/side_img1.jpg';
 import n1 from '../../../../public/images/content/blog_category/n1.jpg';
+import { useGetAllGenres } from '../../../services/genres/getAllGenres';
+import { useMemo } from 'react';
+import { handleReBuildGenres } from '../../../helpers/handleReBuildGenres';
 
 const recentNews = [
     {
@@ -25,39 +28,6 @@ const recentNews = [
     },
 ];
 
-const cates = [
-    {
-        id: 1,
-        label: 'all',
-        values: 23123,
-    },
-    {
-        id: 2,
-        label: 'Action',
-        values: 512,
-    },
-    {
-        id: 3,
-        label: 'Romantic',
-        values: 23123,
-    },
-    {
-        id: 4,
-        label: ' Love',
-        values: 23123,
-    },
-    {
-        id: 5,
-        label: 'Musical',
-        values: 23123,
-    },
-    {
-        id: 6,
-        label: 'Drama',
-        values: 23123,
-    },
-];
-
 const archives = Array.from({ length: 7 }, (_, index) => {
     return {
         id: 1 + index,
@@ -67,6 +37,8 @@ const archives = Array.from({ length: 7 }, (_, index) => {
 });
 
 const BlogRight = () => {
+    const { data } = useGetAllGenres({});
+    const genres = useMemo(() => data?.data?.map(handleReBuildGenres) || [], [data]);
     return (
         <div className="w-[100%]">
             <SearchInput style={{ marginBottom: '40px' }} />
@@ -78,7 +50,7 @@ const BlogRight = () => {
 
             <div className="mb-[40px]">
                 <LabelCommon label={'Category'} style={{ marginBottom: '20px' }} />
-                <ListCategories data={cates} />
+                <ListCategories data={genres} />
             </div>
 
             <div className="mb-[40px]">

@@ -9,36 +9,44 @@ import bs3 from '../../../../public/images/content/blog_category/bs3.jpg';
 import bs4 from '../../../../public/images/content/blog_category/bs4.jpg';
 import bs5 from '../../../../public/images/content/blog_category/bs5.jpg';
 import avatarDefault from '../../../../public/images/content/blog_category/comm_img1.jpg';
-import Empty from '../../organisms/Empty';
 import { formatDateView } from '../../../helpers/formatDateView';
 import Indicator from '../../atoms/Indicator';
 import { Form } from 'antd';
+import { useGetBlog } from '../../../services/blog/getBlog';
+import { useParams } from 'react-router-dom';
+import { useMemo } from 'react';
+import { handleReBuildBlog } from '../../../helpers/handleReBuildBlog';
+import EmptyCustom from '../../organisms/Empty';
 
-const data = {
-    id: 1,
-    thumbnail: [''],
-    trailer_url: '',
-    date: '2025/03/08',
-    author: 'Admin',
-    title: 'Simplicity is about subtracting the obvious and adding part area of the meaningful',
-    description:
-        'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit sequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet the mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.',
-    likes: 1244,
-    comments: 256,
-    presenter: 1456,
-    commenstData: Array.from({ length: 3 }, (_, index) => {
-        return {
-            id: index + 1,
-            author: 'Joahn Doe',
-            message:
-                'The actor, director and producer, son to well-known stunt choreographer of Bollywood, rried to one of the most vivacious, bubbly, live-wire actress, is none other than our dashing Ajay Devgan, originally named Vishal Devgan !',
-            date: '2025/03/05',
-            avatar: '',
-        };
-    }),
-};
+// const data = {
+//     id: 1,
+//     thumbnail: [''],
+//     trailer_url: '',
+//     date: '2025/03/08',
+//     author: 'Admin',
+//     title: 'Simplicity is about subtracting the obvious and adding part area of the meaningful',
+//     description:
+//         'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit sequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet the mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.',
+//     likes: 1244,
+//     comments: 256,
+//     presenter: 1456,
+//     commenstData: Array.from({ length: 3 }, (_, index) => {
+//         return {
+//             id: index + 1,
+//             author: 'Joahn Doe',
+//             message:
+//                 'The actor, director and producer, son to well-known stunt choreographer of Bollywood, rried to one of the most vivacious, bubbly, live-wire actress, is none other than our dashing Ajay Devgan, originally named Vishal Devgan !',
+//             date: '2025/03/05',
+//             avatar: '',
+//         };
+//     }),
+// };
 const BlogSingle = () => {
     const [form] = Form.useForm();
+    const { id } = useParams();
+
+    const { data } = useGetBlog({ id: id });
+    const blog = useMemo(() => (data?.data ? handleReBuildBlog(data?.data) : null), [data]);
 
     const handleSubmit = (data) => {
         console.log(data);
@@ -49,61 +57,56 @@ const BlogSingle = () => {
             <ContainerWapper>
                 <div className="w-[100%] flex lg:flex-row flex-col justify-between lg:items-start items-center sm:gap-0 gap-[20px] py-[100px] ">
                     <div className="lg:w-[70%] w-[95%] flex flex-col justify-start items-center gap-[40px]">
-                        <BlogCard data={data} isAll={false}>
-                            <div className="px-[35px] pb-[40px]">
-                                <p className="mb-[40px] text-justify">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et ore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea comi consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla parire
-                                    Excepteur sint occaecat cupidatat non proident,
-                                    <br />
-                                    <br />
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et lore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea codo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla paturi
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est labume Sed ut perspiciatis unde omnis iste natus erroet dolore
-                                    magnam aliquam quaerat voluptatem.button bgin culpa qui officia deserunt mollit
-                                    animin culpa qui officia deserunt mollit anim.
-                                </p>
-
-                                <div className="flex sm:flex-row flex-col justify-between items-center mb-[28px] sm:gap-0 gap-[10px]">
-                                    {[bs1, bs2, bs3].map((item, index) => {
-                                        return (
-                                            <img src={item} alt="image" key={index} className="sm:w-auto w-[100%]" />
-                                        );
-                                    })}
-                                </div>
-                                <p className="mb-[28px] text-justify">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et ore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea comi consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla parire
-                                    Excepteur sint occaecat cupidatat non proident,
-                                </p>
-
-                                <div className=" flex sm:flex-row flex-col justify-between items-stretch mb-[40px]">
-                                    <div className="border-[1px] border-solid border-[#ccc] p-[30px]">
-                                        <p className="italic">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            temport ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        </p>
-                                        <p className="text-[#ff4444]">by - Akshay H.</p>
+                        {blog ? (
+                            <BlogCard data={blog} isAll={false}>
+                                <div className="px-[35px] pb-[40px]">
+                                    <p
+                                        className="mb-[40px] text-justify"
+                                        dangerouslySetInnerHTML={{ __html: blog?.content }}
+                                    />
+                                    <div className="flex sm:flex-row flex-col justify-between items-center mb-[28px] sm:gap-0 gap-[10px]">
+                                        {[bs1, bs2, bs3].map((item, index) => {
+                                            return (
+                                                <img
+                                                    src={item}
+                                                    alt="image"
+                                                    key={index}
+                                                    className="sm:w-auto w-[100%]"
+                                                />
+                                            );
+                                        })}
                                     </div>
-                                    <img src={bs4} alt="" />
-                                </div>
+                                    {/* <p className="mb-[28px] text-justify">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et ore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                        exercitation ullamco laboris nisi ut aliquip ex ea comi consequat. Duis aute
+                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                        nulla parire Excepteur sint occaecat cupidatat non proident,
+                                    </p> */}
 
-                                <p className="text-justify">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et ore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea comi consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla parire
-                                    Excepteur sint occaecat cupidatat non proident,
-                                </p>
-                            </div>
-                        </BlogCard>
+                                    <div className=" flex sm:flex-row flex-col justify-between items-stretch mb-[40px]">
+                                        <div className="border-[1px] border-solid border-[#ccc] p-[30px]">
+                                            <p className="italic">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                temport ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                            </p>
+                                            <p className="text-[#ff4444]">by - Akshay H.</p>
+                                        </div>
+                                        <img src={bs4} alt="" />
+                                    </div>
+
+                                    <p className="text-justify">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et ore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                        exercitation ullamco laboris nisi ut aliquip ex ea comi consequat. Duis aute
+                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                        nulla parire Excepteur sint occaecat cupidatat non proident,
+                                    </p>
+                                </div>
+                            </BlogCard>
+                        ) : (
+                            <EmptyCustom />
+                        )}
 
                         <div
                             className=" flex sm:flex-row flex-col justify-between items-stretch mb-[20px]"
@@ -147,7 +150,7 @@ const BlogSingle = () => {
                                         );
                                     })
                                 ) : (
-                                    <Empty />
+                                    <EmptyCustom />
                                 )}
                             </div>
                         </div>
