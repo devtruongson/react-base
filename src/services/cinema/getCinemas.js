@@ -12,7 +12,6 @@ export const getCinemasOptions = () =>
     queryOptions({
         queryKey: [GET_CINEMAS_QUERY_KEY],
         queryFn: () => getCinemas(),
-        retry: 0,
     });
 
 export const useGetCinemas = ({ queryConfig }) => {

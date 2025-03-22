@@ -3,21 +3,20 @@ import api from '../../libs/axios';
 
 export const GET_ALL_MOVIES_QUERY_KEY = 'movies';
 
-const getAllMovies = async (payload) => {
-    console.log(payload);
+const getAllMovies = async () => {
     const { data } = await api.get(`/movies`);
     return data;
 };
 
-export const getAllMoviesOptions = (data) =>
+export const getAllMoviesOptions = () =>
     queryOptions({
-        queryKey: [GET_ALL_MOVIES_QUERY_KEY, data],
-        queryFn: () => getAllMovies(data),
+        queryKey: [GET_ALL_MOVIES_QUERY_KEY],
+        queryFn: () => getAllMovies(),
     });
 
-export const useGetAllMovies = ({ queryConfig, data }) => {
+export const useGetAllMovies = ({ queryConfig }) => {
     return useQuery({
-        ...getAllMoviesOptions(data),
+        ...getAllMoviesOptions(),
         ...queryConfig,
         enabled: true,
     });

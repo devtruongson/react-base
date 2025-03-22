@@ -12,7 +12,6 @@ export const getAllGenresOptions = () =>
     queryOptions({
         queryKey: [GET_GENRES_QUERY_KEY],
         queryFn: () => getAllGenres(),
-        retry: 0,
     });
 
 export const useGetAllGenres = ({ queryConfig }) => {

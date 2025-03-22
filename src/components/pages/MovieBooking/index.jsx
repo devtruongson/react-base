@@ -12,7 +12,6 @@ import { useGetMovie } from '../../../services/movie/useGetMovie';
 import { handleBuilderMovies } from '../../../helpers/handleReBuildMovies';
 import { useGetAllGenres } from '../../../services/genres/getAllGenres';
 import { handleReBuildGenres } from '../../../helpers/handleReBuildGenres';
-import { useGetShowTimes } from '../../../services/showtime/useGetShowTimes';
 
 const MovieBooking = () => {
     const { id } = useParams();
@@ -23,13 +22,6 @@ const MovieBooking = () => {
 
     const { data: GenesData } = useGetAllGenres({});
     const genres = useMemo(() => GenesData?.data?.map(handleReBuildGenres) || [], [GenesData]);
-
-    const { data: showTimesData } = useGetShowTimes({});
-    const listShowTimes = useMemo(
-        () => showTimesData?.data?.filter((item) => item?.movie?.id === Number(id)),
-        [showTimesData],
-    );
-    console.log(listShowTimes, id);
 
     return (
         <MainTemplate>
@@ -49,7 +41,7 @@ const MovieBooking = () => {
                         className="lg:w-[70%] w-[95%] rounded-[10px] overflow-hidden bg-white"
                         style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}
                     >
-                        <Cinemas filmId={data?.id} currentDate={currentDate} />
+                        <Cinemas filmId={id} currentDate={currentDate} />
                     </div>
 
                     <div
