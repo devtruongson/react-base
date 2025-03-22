@@ -1,4 +1,5 @@
 export const handleBuilderMovies = (movie) => {
+    console.log('mo >>>--', movie);
     return {
         ...movie,
         name: movie?.title,

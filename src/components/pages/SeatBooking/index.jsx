@@ -1,79 +1,46 @@
 /* eslint-disable react/prop-types */
 import { Popover } from 'antd';
 import { Fragment, useMemo, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import screen from '../../../../public/images/content/screen.png';
 import { formatVND } from '../../../helpers/formatVND';
 import { routes } from '../../../routes';
 import ContainerWapper from '../../templates/ContainerWapper';
+import { useGetMovie } from '../../../services/movie/useGetMovie';
+import { handleBuilderMovies } from '../../../helpers/handleReBuildMovies';
+import { useGetShowTime } from '../../../services/showtime/getShowTime';
+import { formatTime } from '../../../helpers/formatTime';
+import { useGetScreen } from '../../../services/screen/getScreen';
 
 const data = {
     booked: ['a3', 'a2', 'd1', 'd6'],
     price: 100000,
 };
-const film = {
-    id: 1,
-    name: 'Aquaman',
-    trailer_url: 'https://www.youtube.com/embed/d_S6HyolN_w',
-    categories: [
-        {
-            id: 1,
-            name: 'ACTION',
-        },
-        {
-            id: 22,
-            name: 'Adventure',
-        },
-        {
-            id: 3,
-            name: 'Fantasy',
-        },
-    ],
-    graphics: [
-        {
-            id: 1,
-            name: '2D',
-        },
-        {
-            id: 2,
-            name: '3D',
-        },
-        {
-            id: 3,
-            name: '4D',
-        },
-    ],
-    languages: ['ENGLISH', 'HINDI', 'TAMIL'],
-    duration: '2:23', // thoi luong
-    date: '2025/01/01',
-    like: 85,
-    votes: 52291,
-    rate: 4.5,
-    banners: ['', ''],
-};
 
 const SeatBooking = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
     const [searchParams] = useSearchParams();
     const queryParams = useMemo(() => Object?.fromEntries(searchParams.entries()), [searchParams]);
-
     const [booking, setBooking] = useState([]);
 
+    const { data: movieData } = useGetMovie({ id: queryParams?.filmId });
+    const { data: showTimeData } = useGetShowTime({ id: queryParams?.showtime });
+    const { data: screenData } = useGetScreen({ id: id });
+    const movie = useMemo(() => (movieData?.data ? handleBuilderMovies(movieData?.data) : null), [movieData]);
+
     const formatDate = useMemo(() => {
-        if (!queryParams?.date) return '';
-
-        const date = new Date(queryParams?.date);
+        if (!showTimeData?.data?.date) return '';
+        const date = new Date(showTimeData?.data?.date);
         const today = new Date();
-
         const isToday = date.toDateString() === today.toDateString();
         const formatOptions = isToday
             ? { day: '2-digit', month: 'short' }
             : { weekday: 'short', day: '2-digit', month: 'short' };
-
         return isToday
             ? `Today, ${new Intl.DateTimeFormat('en-GB', formatOptions).format(date)}`
             : new Intl.DateTimeFormat('en-GB', formatOptions).format(date);
-    }, [queryParams?.date]);
+    }, [showTimeData]);
 
     return (
         <div className="w-[100%] text-[#ffffff61]">
@@ -91,12 +58,12 @@ const SeatBooking = () => {
 
                         <div className="">
                             <div className="flex justify-center items-end gap-[10px]">
-                                <p className="uppercase text-[20px] font-[400]">{film?.name}</p>
+                                <p className="uppercase text-[20px] font-[400]">{movie?.name}</p>
                                 <p className="uppercase text-[20px] font-[400]">-</p>
-                                <p className="uppercase text-[20px] font-[400]">{`(${film?.duration})`}</p>
+                                <p className="uppercase text-[20px] font-[400]">{`(${movie?.duration})`}</p>
                             </div>
                             <p className="text-center uppercase text-[#ffffff61] text-[16px]">
-                                {formatDate}, {queryParams?.time?.replace(/(AM|PM)/, ' $1')}
+                                {formatDate}, {formatTime(showTimeData?.data?.start_time)}
                             </p>
                         </div>
 
@@ -214,13 +181,9 @@ const SeatBooking = () => {
                         {/* detail movie */}
                         <div className="w-[25%] text-[#000]">
                             <div className="flex justify-start gap-[20px] mb-[40px]">
-                                <img
-                                    src="http://filmgo.io.vn/images/movies/AdZEpvwQxlHk.jpg"
-                                    alt=""
-                                    className="w-[150px] object-cover"
-                                />
+                                <img src={movie?.thumbnail} alt="" className="w-[150px] object-cover" />
                                 <div className="">
-                                    <p className="text-[#ff4444] text-[24px] font-[600]">{film.name}</p>
+                                    <p className="text-[#ff4444] text-[24px] font-[600]">{movie?.name}</p>
                                     <p></p>
                                 </div>
                             </div>
@@ -229,14 +192,18 @@ const SeatBooking = () => {
                                 {[
                                     {
                                         icon: 'bi bi-film',
-                                        label: 'Rạp chiếu',
-                                        value: film.categories.map((item) => item.name).join(', '),
+                                        label: 'thể loại',
+                                        value: movie?.categories.map((item) => item.name).join(', '),
                                     },
-                                    { icon: 'bi bi-stopwatch', label: 'Thời lượng', value: film.duration },
-                                    { icon: 'bi bi-film', label: 'Rạp chiếu', value: 'Rap ABC' },
-                                    { icon: 'bi bi-film', label: 'Ngày chiếu', value: film.date },
-                                    { icon: 'bi bi-clock', label: 'Giờ chiếu', value: 'Rap ABC' },
-                                    { icon: 'bi bi-tv', label: 'Phòng chiếu', value: 'Rap ABC' },
+                                    { icon: 'bi bi-stopwatch', label: 'Thời lượng', value: movie?.duration },
+                                    { icon: 'bi bi-film', label: 'Rạp chiếu', value: screenData?.data?.cinema?.name },
+                                    { icon: 'bi bi-film', label: 'Ngày chiếu', value: showTimeData?.data?.date },
+                                    {
+                                        icon: 'bi bi-clock',
+                                        label: 'Giờ chiếu',
+                                        value: formatTime(showTimeData?.data?.date),
+                                    },
+                                    { icon: 'bi bi-tv', label: 'Phòng chiếu', value: screenData?.data?.name },
                                     { icon: 'bi bi-film', label: 'Ghế', value: 'Rap ABC' },
                                 ].map((item, index) => {
                                     return (
@@ -244,7 +211,7 @@ const SeatBooking = () => {
                                             <div className="flex justify-between mb-[16px]">
                                                 <div className="flex justify-start gap-[10px]">
                                                     <i className={item.icon}></i>
-                                                    <p>{item.label}</p>
+                                                    <p className="w-[100px]">{item.label}</p>
                                                 </div>
                                                 <p>{item.value}</p>
                                             </div>
@@ -294,14 +261,14 @@ const ListChair = ({ target, booked, booking, setBooking, price, isDoubleChair, 
 };
 
 const Chair = ({ name, booked, booking, setBooking, price, isDoubleChair, type }) => {
-    const isBooked = useMemo(() => booked.includes(name), [name, booked]);
-    const isBooking = useMemo(() => booking.includes(name), [name, booking]);
+    const isBooked = useMemo(() => booked?.includes(name), [name, booked]);
+    const isBooking = useMemo(() => booking?.includes(name), [name, booking]);
 
     const color = useMemo(() => {
-        if (booked.includes(name)) {
+        if (booked?.includes(name)) {
             return '#babac1';
         }
-        if (booking.includes(name)) {
+        if (booking?.includes(name)) {
             return '#1d59a2';
         }
 
