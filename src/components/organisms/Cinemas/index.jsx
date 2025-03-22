@@ -7,7 +7,7 @@ import { useCallback, useMemo } from 'react';
 import bill from '../../../../public/images/content/bill.png';
 import fastFood from '../../../../public/images/content/fast-food.png';
 import ticket from '../../../../public/images/content/ticket.png';
-import { useGetShowTimes } from '../../../services/showtime/useGetShowTimes';
+import { useGetShowTimes } from '../../../services/showtime/getShowTimes';
 import { useGetScreens } from '../../../services/screen/getScreens';
 import { formatTime } from '../../../helpers/formatTime';
 import EmptyCustom from '../Empty';
@@ -67,7 +67,6 @@ const Cinemas = ({ filmId, currentDate }) => {
     if (isFetching || isFetchingScreen) {
         return <Skeleton.Node active={true} style={{ width: '100%', height: '100px' }} />;
     }
-    console.log(cinamas);
     return (
         <div className="w-[100%] px-[20px] pt-[20px]">
             {cinamas?.length ? (
@@ -86,13 +85,15 @@ const Cinemas = ({ filmId, currentDate }) => {
 
 export default Cinemas;
 
-const CinemaItem = ({ cinema, filmId, currentDate }) => {
+const CinemaItem = ({ cinema, filmId }) => {
     const navigate = useNavigate();
     const handleNavigate = useCallback(
         (showtime) => {
-            navigate(routes.seat_booking.replace(':id', `${showtime?.screen?.id}?filmId=${filmId}`));
+            navigate(
+                routes.seat_booking.replace(':id', `${showtime?.screen?.id}?filmId=${filmId}&showtime=${showtime?.id}`),
+            );
         },
-        [cinema?.id, currentDate, filmId, navigate],
+        [filmId, navigate],
     );
 
     const handleGetIcon = (type) => {
