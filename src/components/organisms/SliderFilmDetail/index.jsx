@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { CalendarOutlined, ClockCircleOutlined, HeartOutlined } from '@ant-design/icons';
 import slider from '../../../../public/images/content/movie_category/slider_img1.jpg';
+import { useGetRandom } from '../../../hooks/useGetRandom';
 
 /* eslint-disable react/prop-types */
 const SliderFilmDetail = ({ data, image }) => {
@@ -13,9 +14,10 @@ const SliderFilmDetail = ({ data, image }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [data?.id],
     );
-
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const votes = useMemo(() => data?.votes || useGetRandom(100, 400), [data]);
     return (
-        <div className="flex lg:flex-row flex-col justify-center md:p-[0] p-[10px]">
+        <div className="flex lg:flex-row flex-col justify-center md:p-[0] p-[10px] lg:gap-[10px]">
             <div className="lg:w-[35%] w-[100%] text-start pl-[20px]">
                 <p className="text-[14px] mb-[10px]">{data?.categories?.map((item) => item?.name).join(' / ')}</p>
                 <p className="text-[12px]">{data?.languages?.join(', ')}</p>
@@ -30,6 +32,7 @@ const SliderFilmDetail = ({ data, image }) => {
                         );
                     })}
                 </div>
+                <p className="text-justify mb-[10px]">{data?.description}</p>
                 <div className="flex flex-col gap-[8px] items-start">
                     <div className="flex justify-start items-center gap-[8px]">
                         <CalendarOutlined />
@@ -41,7 +44,7 @@ const SliderFilmDetail = ({ data, image }) => {
                     </div>
                     <div className="flex justify-start items-center gap-[8px]">
                         <HeartOutlined />
-                        <p>{data?.votes}</p>
+                        <p>{votes}</p>
                     </div>
                 </div>
 

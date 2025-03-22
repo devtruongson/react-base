@@ -1,6 +1,5 @@
 import Preview from '../../organisms/Preview';
 import ListFilm from '../../organisms/ListFilm';
-import Slider from 'react-slick';
 import SliderFilmDetail from '../../organisms/SliderFilmDetail';
 import BasicTemplate from '../../templates/BasicTemplate';
 import Indicator from '../../atoms/Indicator';
@@ -10,13 +9,6 @@ import { useMemo } from 'react';
 import { handleBuilderMovies } from '../../../helpers/handleReBuildMovies';
 import { useGetAllMovies } from '../../../services/movie/useGetOneMovie';
 
-const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-};
 const FilmDetail = () => {
     const { id } = useParams();
     const { data } = useGetMovie({ id: id });
@@ -59,13 +51,7 @@ const FilmDetail = () => {
             <div className="pt-[25px] w-full">
                 <Preview data={movie} />
                 <div className="my-[40px]">
-                    <Slider {...settings}>
-                        {data?.banners?.length
-                            ? data?.banners.map((item, index) => {
-                                  return <SliderFilmDetail key={index} data={data} image={item} />;
-                              })
-                            : null}
-                    </Slider>
+                    <SliderFilmDetail data={movie} image={movie?.poster} />
                 </div>
 
                 <div className="flex lg:flex-row flex-col justify-between lg:items-start items-center">

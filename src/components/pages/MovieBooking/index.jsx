@@ -25,6 +25,12 @@ const MovieBooking = () => {
     const genres = useMemo(() => GenesData?.data?.map(handleReBuildGenres) || [], [GenesData]);
 
     const { data: showTimesData } = useGetShowTimes({});
+    const listShowTimes = useMemo(
+        () => showTimesData?.data?.filter((item) => item?.movie?.id === Number(id)),
+        [showTimesData],
+    );
+    console.log(listShowTimes, id);
+
     return (
         <MainTemplate>
             <ContainerWapper>
