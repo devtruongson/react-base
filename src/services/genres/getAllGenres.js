@@ -8,16 +8,16 @@ const getAllGenres = async () => {
     return data;
 };
 
-export const getAllGenresOptions = (data) =>
+export const getAllGenresOptions = () =>
     queryOptions({
-        queryKey: [GET_GENRES_QUERY_KEY, data],
-        queryFn: () => getAllGenres(data),
+        queryKey: [GET_GENRES_QUERY_KEY],
+        queryFn: () => getAllGenres(),
         retry: 0,
     });
 
-export const useGetAllGenres = ({ queryConfig, data }) => {
+export const useGetAllGenres = ({ queryConfig }) => {
     return useQuery({
-        ...getAllGenresOptions(data),
+        ...getAllGenresOptions(),
         ...queryConfig,
         enabled: true,
     });
